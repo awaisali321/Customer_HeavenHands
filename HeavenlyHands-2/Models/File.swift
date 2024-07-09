@@ -26,7 +26,7 @@ struct CurrentUser: Codable {
         let userID: Int?
         var mobileNumber, homeNumber, gender, email: String?
         var dateOfBirth: String?
-        let file: String?
+        var file: String?
         let cnic, ssn, encodedSsn: String?
         let deletedAt: String?
         let createdAt, updatedAt: String?

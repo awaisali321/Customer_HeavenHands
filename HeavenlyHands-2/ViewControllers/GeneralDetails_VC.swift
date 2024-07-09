@@ -26,7 +26,8 @@ class GeneralDetails_VC: UIViewController {
         self.detailDataArray.append(ProfileArray?.homeNumber ?? "")
         self.detailDataArray.append(ProfileArray?.ssn ?? "")
         self.detailArray = ["CIN","Gender","Height","Weight"]
-        self.nameLbl.text = "\(ProfileArray?.name ?? "")"
+     
+        self.nameLbl.text = (AppDefault.currentUser?.firstName ?? "") + " " + (AppDefault.currentUser?.lastName ?? "")
         self.ProfileImg.pLoadImage(url: appdelegate.imagebaseurl + (AppDefault.currentUser?.file ?? ""))
         self.GeneralDetailsTbl.reloadData()
         
@@ -48,34 +49,7 @@ class GeneralDetails_VC: UIViewController {
         dismiss(animated: true, completion: nil)
 
     }
-    private  func ProfileApi(_ first_name:String,_ last_name:String,_ date_of_birth:String,_ gender:String,_ email:String,_ cnic:String,_ ssn:String,_ mobile_number:String,_ home_number:String,_ street_address:String,_ city:String,_ state:String,_ zip_code:String) {
-        APIServices.ProfileApi(first_name:first_name,last_name: last_name,date_of_birth: date_of_birth,gender: gender,email: email,cnic: cnic,ssn: ssn,mobile_number: mobile_number,home_number: home_number,street_address: street_address,city: city,state: state,zip_code: zip_code) {(result) in
-            switch result{
-            case .success(let response):
-                self.ProfileArray = response
-  
-                self.detailDataArray.append(response.cnic ?? "")
-                self.detailDataArray.append(response.gender ?? "")
-                self.detailDataArray.append(response.homeNumber ?? "")
-                self.detailDataArray.append(response.ssn ?? "")
-                
-                
-                
-                
-                
-               
-
-            case .failure(let error):
-                if(error == "Response status code was unacceptable: 500."){
-                   
-                    appdelegate.gotoSignInVc()
-                    self.view.makeToast("LogIn Session Expired")
-                }
-       
-                
-            }
-        }
-    }
+ 
     @IBAction func editProfileButtonTapped(_ sender: UIButton) {
         if isEditingProfile {
             // Handle Save action

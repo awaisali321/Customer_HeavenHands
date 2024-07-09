@@ -138,8 +138,8 @@ class APIServices{
         }
     }
     
-    class func ProfileApi(first_name:String , last_name: String, date_of_birth: String, gender: String, email: String, cnic: String, ssn: String, mobile_number: String, home_number: String, street_address: String, city: String, state: String, zip_code: String,completion:@escaping(APIResult<ProfileModel>)->Void){
-        Provider.services.request(.ProfileApi(first_name:first_name , last_name: last_name, date_of_birth: date_of_birth, gender: gender, email: email, cnic: cnic, ssn: ssn, mobile_number: mobile_number, home_number: home_number, street_address: street_address, city: city, state: state, zip_code: zip_code)) { result in
+    class func ProfileApi(first_name:String , last_name: String, date_of_birth: String, gender: String, email: String, cnic: String, ssn: String, mobile_number: String, home_number: String, street_address: String, city: String, state: String, img: Data, zip_code: String,completion:@escaping(APIResult<ProfileModel>)->Void){
+        Provider.services.request(.ProfileApi(first_name:first_name , last_name: last_name, date_of_birth: date_of_birth, gender: gender, email: email, cnic: cnic, ssn: ssn, mobile_number: mobile_number, home_number: home_number, street_address: street_address, city: city, state: state, zip_code: zip_code, Image: img)) { result in
             do{
                 
                 let User: ProfileModel = try result.decoded()

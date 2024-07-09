@@ -24,7 +24,7 @@ class Profile_VC: UIViewController {
     @IBOutlet weak var dateofbirth: UITextField!
     @IBOutlet weak var generalbl: UITextField!
     var isEditingProfile = false
-
+    var isimage = false
     
 //    var itemsArray = [String]()
     
@@ -42,9 +42,7 @@ class Profile_VC: UIViewController {
 //itemsArray = ["jameswilliam@gmail.com","+92 123 456789","Adress","19-12-1985","General Details"]
         iconImagesArray = ["email_icon","telephone_126523 1","location_684809 1","calendar_2589240 1","index_6639076 1"]
         self.ProfileImg.pLoadImage(url: appdelegate.imagebaseurl + (AppDefault.currentUser?.file ?? ""))
-      
-        
-        
+        self.nameLbl.text = (AppDefault.currentUser?.firstName ?? "") + " " + (AppDefault.currentUser?.lastName ?? "")
 //        self.ProfileApi("\(AppDefault.currentUser?.firstName ?? "")", "\(AppDefault.currentUser?.lastName ?? "")", "\(AppDefault.currentUser?.dateOfBirth ?? "")", "\(AppDefault.currentUser?.gender ?? "")", "\(AppDefault.currentUser?.email ?? "")", "\(AppDefault.currentUser?.cnic ?? "")", "\(AppDefault.currentUser?.ssn ?? "")", "\(AppDefault.currentUser?.mobileNumber ?? "")", "\(AppDefault.currentUser?.homeNumber ?? "")", "\(AppDefault.currentUser?.address?.formatted ?? "")", "\(AppDefault.currentUser?.address?.city ?? "")","\(AppDefault.currentUser?.address?.state ?? "")", "\(AppDefault.currentUser?.address?.zipCode ?? "")")
 //        
 //
@@ -67,9 +65,9 @@ class Profile_VC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
      
     }
-    private  func ProfileApi(_ first_name:String,_ last_name:String,_ date_of_birth:String,_ gender:String,_ email:String,_ cnic:String,_ ssn:String,_ mobile_number:String,_ home_number:String,_ street_address:String,_ city:String,_ state:String,_ zip_code:String) {
+    private  func ProfileApi(_ first_name:String,_ last_name:String,_ date_of_birth:String,_ gender:String,_ email:String,_ cnic:String,_ ssn:String,_ mobile_number:String,_ home_number:String,_ street_address:String,_ city:String,_ state:String,_ zip_code:String,_ img:Data) {
        
-        APIServices.ProfileApi(first_name:first_name,last_name: last_name,date_of_birth: date_of_birth,gender: gender,email: email,cnic: cnic,ssn: ssn,mobile_number: mobile_number,home_number: home_number,street_address: street_address,city: city,state: state,zip_code: zip_code) {(result) in
+        APIServices.ProfileApi(first_name:first_name,last_name: last_name,date_of_birth: date_of_birth,gender: gender,email: email,cnic: cnic,ssn: ssn,mobile_number: mobile_number,home_number: home_number,street_address: street_address,city: city,state: state, img: img,zip_code: zip_code) {(result) in
             switch result{
             case .success(let response):
                 self.ProfileArray = response
@@ -79,7 +77,7 @@ class Profile_VC: UIViewController {
                 AppDefault.currentUser?.address?.city = self.citylbl.text
                  AppDefault.currentUser?.address?.state  = self.statelbl.text
                 AppDefault.currentUser?.dateOfBirth  = self.dateofbirth.text
-               
+                AppDefault.currentUser?.file  = response.file
                 self.ProfileImg.pLoadImage(url: appdelegate.imagebaseurl + (AppDefault.currentUser?.file ?? ""))
               
 
@@ -106,30 +104,12 @@ class Profile_VC: UIViewController {
         ImagePickerManager().pickImage(self){ image in
             self.ProfileImg.image = image.pResizeWith(width: 80)
             
-            let imageData = image.jpegData(compressionQuality: 0.7) ?? Data()
-            self.uploadImage(reportid: "\(AppDefault.currentUser?.id)", image: imageData)
+           
+            self.isimage = true
         }
     }
     
-    private func uploadImage(reportid: String, image: Data) {
-           APIServices.uploadprofile(reportid: reportid, image: image) { (result) in
-               switch result {
-               case .success(let response):
-                 
-                   // Handle success response
-                  self.view.makeToast("Image uploaded successfully")
-                   
-               case .failure(let error):
-                   print("Image upload failed with error: \(error)")
-                   if error == "Response status code was unacceptable: 500." {
-                       appdelegate.gotoSignInVc()
-                       self.view.makeToast("LogIn Session Expired")
-                   } else {
-                       self.ProfileApi("\(AppDefault.currentUser?.firstName ?? "")", "\(AppDefault.currentUser?.lastName ?? "")", "\(self.dateofbirth?.text ?? "")", "\(AppDefault.currentUser?.gender ?? "")", "\(AppDefault.currentUser?.email ?? "")", "\(AppDefault.currentUser?.cnic ?? "")", "\(AppDefault.currentUser?.ssn ?? "")", "\(self.phonelbl?.text ?? "")", "\(AppDefault.currentUser?.homeNumber ?? "")", "\(self.addresslbl?.text ?? "")","\(self.citylbl?.text ?? "")","\(self.statelbl?.text ?? "")", "\(AppDefault.currentUser?.address?.zipCode ?? "")")
-                   }
-               }
-           }
-       }
+  
     
     
     @IBAction func BackBtn(_ Sender:Any){
@@ -153,8 +133,8 @@ class Profile_VC: UIViewController {
     @IBAction func editProfileButtonTapped(_ sender: UIButton) {
         if isEditingProfile{
  
-            
-            self.ProfileApi("\(AppDefault.currentUser?.firstName ?? "")", "\(AppDefault.currentUser?.lastName ?? "")", "\(self.dateofbirth?.text ?? "")", "\(AppDefault.currentUser?.gender ?? "")", "\(AppDefault.currentUser?.email ?? "")", "\(AppDefault.currentUser?.cnic ?? "")", "\(AppDefault.currentUser?.ssn ?? "")", "\(self.phonelbl?.text ?? "")", "\(AppDefault.currentUser?.homeNumber ?? "")", "\(self.addresslbl?.text ?? "")","\(self.citylbl?.text ?? "")","\(self.statelbl?.text ?? "")", "\(AppDefault.currentUser?.address?.zipCode ?? "")")
+            let imageData = self.ProfileImg.image?.jpegData(compressionQuality: 0.7) ?? Data()
+            self.ProfileApi("\(AppDefault.currentUser?.firstName ?? "")", "\(AppDefault.currentUser?.lastName ?? "")", "\(self.dateofbirth?.text ?? "")", "\(AppDefault.currentUser?.gender ?? "")", "\(AppDefault.currentUser?.email ?? "")", "\(AppDefault.currentUser?.cnic ?? "")", "\(AppDefault.currentUser?.ssn ?? "")", "\(self.phonelbl?.text ?? "")", "\(AppDefault.currentUser?.homeNumber ?? "")", "\(self.addresslbl?.text ?? "")","\(self.citylbl?.text ?? "")","\(self.statelbl?.text ?? "")", "\(AppDefault.currentUser?.address?.zipCode ?? "")", imageData)
             
             
             ProfileimageChngView.isHidden = true
@@ -166,6 +146,7 @@ class Profile_VC: UIViewController {
             self.citylbl.isUserInteractionEnabled = false
             self.statelbl.isUserInteractionEnabled = false
             self.dateofbirth.isUserInteractionEnabled = false
+            isEditingProfile = false
         } else {
             // Handle Edit action
             isEditingProfile = true
