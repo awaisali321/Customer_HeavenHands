@@ -177,6 +177,7 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/EzPopup/EzPopup.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAppCheckInterop/FirebaseAppCheckInterop.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
@@ -200,6 +201,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SignalRSwift/SignalRSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftFlags/SwiftFlags.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftSignatureView/SwiftSignatureView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UBottomSheet/UBottomSheet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WKWebViewController/WKWebViewController.framework"
@@ -207,6 +209,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/EzPopup/EzPopup.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAppCheckInterop/FirebaseAppCheckInterop.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
@@ -230,6 +233,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SignalRSwift/SignalRSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftFlags/SwiftFlags.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftSignatureView/SwiftSignatureView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UBottomSheet/UBottomSheet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WKWebViewController/WKWebViewController.framework"

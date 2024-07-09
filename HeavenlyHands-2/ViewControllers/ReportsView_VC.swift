@@ -11,14 +11,23 @@ import JGProgressHUD
 
 class ReportsView_VC: UIViewController{
     @IBOutlet weak var WebView_View:WKWebView!
+    @IBOutlet weak var headerlbl:UILabel!
     var ReportsmodelArray:ReportsModel?
     var PathLbl = String()
+    var iscome = String()
     let progressHUD = JGProgressHUD(style: .dark)
 
         
     override func viewDidLoad() {
+        
+        
+        if(iscome == "report"){
+            headerlbl.text = "View Reports"
+        }else{
+            headerlbl.text = "View Documents"
+        }
         super.viewDidLoad()
-        progressHUD.interactionType = .blockAllTouches
+        progressHUD.interactionType = .blockNoTouches
 
             // Show HUD
             progressHUD.show(in: self.view)

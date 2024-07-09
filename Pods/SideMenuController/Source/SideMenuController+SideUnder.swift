@@ -92,7 +92,7 @@ extension SideMenuController {
         
         let updated = centerPanel.frame != centerPanelFrame
         
-        UIView.panelAnimation( duration, animations: {
+        UIView.panelAnimation( duration, animations: { 
             self.centerPanel.frame = centerPanelFrame
             self.set(statusUnderlayAlpha: hidden ? 0 : 1)
         }) {
@@ -103,7 +103,7 @@ extension SideMenuController {
         }
     }
     
-    @objc  func handleCenterPanelPan(_ recognizer: UIPanGestureRecognizer){
+    @objc func handleCenterPanelPan(_ recognizer: UIPanGestureRecognizer){
         
         guard canDisplaySideController else {
             return

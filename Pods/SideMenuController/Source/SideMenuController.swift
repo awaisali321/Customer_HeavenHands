@@ -35,7 +35,7 @@ public extension SideMenuController {
     /**
      Toggles the side pannel visible or not.
      */
-    @objc  func toggle() {
+    @objc public func toggle() {
         
         if !transitionInProgress {
             if !sidePanelVisible {
@@ -335,7 +335,9 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
     }
-    
+    @objc func handleTap() {
+        animate(toReveal: false)
+    }
     func set(statusUnderlayAlpha alpha: CGFloat) {
         guard showsStatusUnderlay else {
             return
@@ -348,9 +350,6 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         statusBarUnderlay.alpha = alpha
     }
     
-    @objc func handleTap() {
-        animate(toReveal: false)
-    }
     
     // MARK:- UIGestureRecognizerDelegate -
     

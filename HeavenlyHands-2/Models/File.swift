@@ -216,7 +216,7 @@ struct ReportsModel: Codable {
     let perPage: Int?
     let prevPageURL: String?
     let to, total: Int?
-
+   
     enum CodingKeys: String, CodingKey {
         case currentPage = "current_page"
         case data
@@ -230,6 +230,7 @@ struct ReportsModel: Codable {
         case perPage = "per_page"
         case prevPageURL = "prev_page_url"
         case to, total
+        
     }
 }
 
@@ -245,6 +246,7 @@ struct ReportsDatum: Codable {
     let createdAt, updatedAt: String?
     let file, html: String?
     let serviceCordBy: Int?
+    let patient_signature: String?
 
     enum CodingKeys: String, CodingKey {
         case id, type
@@ -257,6 +259,7 @@ struct ReportsDatum: Codable {
         case updatedAt = "updated_at"
         case file, html
         case serviceCordBy = "service_cord_by"
+        case patient_signature
     }
 }
 
@@ -483,4 +486,48 @@ struct LogOutModel: Codable {
     enum CodingKeys: String, CodingKey {
         case message
     }
+}
+class notificationmodel: NSObject, NSCoding {
+    
+    var body: String!
+    var title: String!
+    var dates: String!
+   
+    
+    override init() {
+        super.init()
+    }
+    
+      required init?(coder aDecoder: NSCoder) {
+        self.body = aDecoder.decodeObject(forKey: "body") as? String
+        self.title = aDecoder.decodeObject(forKey: "title") as? String
+        self.dates = aDecoder.decodeObject(forKey: "dates") as? String
+      
+        
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.body, forKey: "body")
+        aCoder.encode(self.title, forKey: "title")
+        aCoder.encode(self.dates, forKey: "dates")
+     
+    }
+    
+    
+    //MARK: Archive Methods
+    class func archiveFilePath() -> String {
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        return documentsDirectory.appendingPathComponent("notificationmodel.archive").path
+    }
+    
+    class func readUserFromArchive() -> [notificationmodel]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: archiveFilePath()) as? [notificationmodel]
+    }
+    
+    class func saveUserToArchive(notificationmodels: [notificationmodel]) -> Bool {
+        return NSKeyedArchiver.archiveRootObject(notificationmodels, toFile: archiveFilePath())
+    }
+    
+    
+    
 }

@@ -18,10 +18,12 @@ target 'HeavenlyHands-2' do
 pod 'SideMenuController'
 pod 'WKWebViewController'
 pod 'Alamofire'
+
 pod 'Kingfisher', '~> 7.0'
 pod 'OTPFieldView'
 pod 'SwiftFlags'
 pod 'UBottomSheet'
+pod 'EzPopup'
 pod 'Firebase/Messaging'
 pod 'Moya', '~> 13.0'
 pod 'FirebaseAuth'
@@ -30,6 +32,10 @@ pod 'SignalRSwift', '~> 2.0.2'
 pod 'SwiftyJSON'
 pod 'Presentr'
 pod 'IQKeyboardManagerSwift', '6.5.0'
+pod "SwiftSignatureView"
+pod 'Firebase'
+pod 'Firebase/Messaging'
+pod 'Firebase/Auth'
 end
 post_install do |pi|
  pi.pods_project.targets.each do |t|

@@ -23,7 +23,7 @@
 
 import Foundation
 
-let DefaultStatusBarHeight : CGFloat = 55
+let DefaultStatusBarHeight : CGFloat = 20
 
 extension UIView {
     class func panelAnimation(_ duration : TimeInterval, animations : @escaping (()->()), completion : (()->())? = nil) {
@@ -46,10 +46,8 @@ public extension UINavigationController {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         button.accessibilityIdentifier = SideMenuController.preferences.interaction.menuButtonAccessibilityIdentifier
         button.setImage(image, for: .normal)
-        
-        
-        
         button.addTarget(sideMenuController, action: #selector(SideMenuController.toggle), for: UIControl.Event.touchUpInside)
+        
         if SideMenuController.preferences.drawing.sidePanelPosition.isPositionedLeft {
             let newItems = computeNewItems(sideMenuController: sideMenuController, button: button, controller: self.topViewController, positionLeft: true)
             self.topViewController?.navigationItem.leftBarButtonItems = newItems

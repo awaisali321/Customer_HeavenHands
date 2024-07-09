@@ -139,4 +139,15 @@ class APIServices{
             
         }
     }
+    class func uploadImage(reportid: String, image: Data, completion: @escaping(APIResult<Bool>) -> Void) {
+            Provider.services.request(.uploadImage(image: image, reportid: reportid)) { result in
+                do {
+                    let response: Bool = try result.decoded()
+                    completion(.success(response))
+                } catch {
+                    print("-----Error------ \n", error)
+                    completion(.failure(error.customDescription))
+                }
+            }
+        }
 }

@@ -13,7 +13,10 @@ class Reports_Cell: UITableViewCell {
     @IBOutlet weak var TimeLbl:UILabel!
     @IBOutlet weak var PdfDownloadBtn:UIButton!
     @IBOutlet weak var ViewFileBtn:UIButton!
+    @IBOutlet weak var signatureview: UIView!
+    @IBOutlet weak var signatureviewbtn: UIButton!
     
+    @IBOutlet weak var eyeview: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

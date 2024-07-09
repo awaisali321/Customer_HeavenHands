@@ -8,33 +8,54 @@
 import UIKit
 
 class Documents_VC: UIViewController {
+    @IBOutlet weak var nodatafound: UIView!
     @IBOutlet weak var DocumentsTbl:UITableView!
     var DocumentsNamesArray = [String]()
     var DatesArray = [String]()
     var TimeArray = [String]()
     var DocumentsmodelArray:DocumentsModel? {
         didSet{
+            if(DocumentsmodelArray?.data?.count ?? 0 > 0){
+                nodatafound.isHidden = true
+            }else{
+                nodatafound.isHidden = false
+            }
+            
             DocumentsTbl.reloadData()
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        DocumentsNamesArray = ["Documents 01","Documents 02","Documents 03","Documents 04"]
-        DatesArray = ["07-01-2024","08-01-2024","09-01-2024","10-01-2024"]
-        TimeArray = ["11:00 am","12:00 pm","01:00 pm","03:00 pm"]
-        
+     
         self.DocumentsApi()
     }
     @objc func DocumentsViewBtn(sender: UIButton){
         let data = DocumentsmodelArray?.data?[sender.tag]
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let destination = storyboard.instantiateViewController(withIdentifier: "Documents_View_VC") as! Documents_View_VC
-                destination.PathLbl = data?.url ?? ""
-                
-                navigationController?.pushViewController(destination, animated: true)
-                dismiss(animated: true, completion: nil)
+        var filePath = data?.url ?? ""
+        let prefix = "public/"
+
+        if filePath.hasPrefix(prefix) {
+            filePath = filePath.replacingOccurrences(of: prefix, with: "")
+        }
+
+        print(filePath)
+        
+      
+        let someText:String = ""
+        let objectsToShare:URL = URL(string: AppConstants.API.imageurl.absoluteString + (filePath))!
+        
+      
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destination = storyboard.instantiateViewController(withIdentifier: "Documents_View_VC") as! Documents_View_VC
+
+        destination.PathLbl = objectsToShare.absoluteString
+        
+        navigationController?.pushViewController(destination, animated: true)
+        dismiss(animated: true, completion: nil)
+        
+        
         
     }
     
@@ -62,11 +83,7 @@ class Documents_VC: UIViewController {
             case .success(let response):
                 self.DocumentsmodelArray = response
                 
-                if(response.data?.isEmpty == true){
-                    self.view.makeToast("No Data Found")
-                }else{
-                    
-                }
+             
                 
             case .failure(let error):
                 if(error == "Response status code was unacceptable: 500."){

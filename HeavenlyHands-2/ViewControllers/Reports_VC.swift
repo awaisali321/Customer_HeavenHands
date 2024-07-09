@@ -6,24 +6,36 @@
 //
 
 import UIKit
+import EzPopup
+import Kingfisher
+import Alamofire
+import SwiftyJSON
 
 class Reports_VC: UIViewController {
     @IBOutlet weak var ReportsTbl:UITableView!
+    @IBOutlet weak var nodatafound: UIView!
+   
+  
     var DocumentsNamesArray = [String]()
     var DatesArray = [String]()
     var TimeArray = [String]()
     var ReportsmodelArray:ReportsModel? {
         didSet{
+            if(ReportsmodelArray?.data?.count ?? 0 > 0){
+                nodatafound.isHidden = true
+            }else{
+                nodatafound.isHidden = false
+            }
+            
+            
+            
             ReportsTbl.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DocumentsNamesArray = ["Report 01","Report 02","Report 03","Report 04","Report 05","Report 06","Report 07"]
-        DatesArray = ["07-01-2024","08-01-2024","09-01-2024","10-01-2024","11-01-2024","12-01-2024","13-01-2024"]
-        TimeArray = ["11:00 am","12:00 pm","01:00 pm","03:00 pm","04:00 pm","05:00 pm","06:00 pm"]
-       
+      
         self.ReportsApi()
         // Do any additional setup after loading the view.
     }
@@ -46,36 +58,13 @@ class Reports_VC: UIViewController {
     }
     @objc func PdfDownloadBtn(sender: UIButton){
         let data = ReportsmodelArray?.data?[sender.tag]
-        if(data?.file?.isEmpty == false){
-            let fileURLs : String = "\(appdelegate.imagebaseurl)" + "\(data?.file ?? "")";
-            
-            
-            DispatchQueue.main.async {
-                if let url = URL(string: fileURLs) {
-                    do {
-                        let pdfData = try Data(contentsOf: url)
-
-                        let resDocPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
-
-                        // Use the actual file extension from the URL
-                        let pdfFileName = UUID().uuidString + (url.pathExtension.isEmpty ? "" : ".\(url.pathExtension).pdf")
-
-                        let filePath = resDocPath.appendingPathComponent(pdfFileName)
-
-                        // Save to Files
-                        try pdfData.write(to: filePath, options: .atomic)
-                        print("File Saved")
-                        self.view.makeToast("File Download Successfully")
-                    } catch {
-                        print("Error downloading or saving file: \(error.localizedDescription)")
-                        self.view.makeToast("Corrupt File")
-                    }
-                }
-            }
-            
-        }else{
-            self.view.makeToast("No Pdf File Found")
-        }
+        let pickerVC_self = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signatureVC") as? signatureVC
+        pickerVC_self?.Tripid = "\(data?.id ?? 0)"
+        pickerVC_self?.type = "P"
+        pickerVC_self?.delegate = self
+        let popupVC = PopupViewController(contentController: pickerVC_self!, popupWidth: 310,popupHeight: 480)
+        popupVC.cornerRadius = 10
+        present(popupVC, animated: true, completion: nil)
     }
     @objc func ReportsViewBtn(sender: UIButton){
         let data = ReportsmodelArray?.data?[sender.tag]
@@ -84,7 +73,7 @@ class Reports_VC: UIViewController {
             let destination = storyboard.instantiateViewController(withIdentifier: "ReportsView_VC") as! ReportsView_VC
 
             destination.PathLbl = data?.html ?? ""
-
+            destination.iscome = "report"
             navigationController?.pushViewController(destination, animated: true)
             dismiss(animated: true, completion: nil)
             
@@ -93,6 +82,9 @@ class Reports_VC: UIViewController {
             
         }
     }
+    
+  
+
     private  func ReportsApi() {
         APIServices.ReportsApi() {(result) in
             switch result{
@@ -101,11 +93,7 @@ class Reports_VC: UIViewController {
   
                 
                 
-                    if(response.data?.isEmpty == true){
-                        self.view.makeToast("No Data Found")
-                    }else{
-
-                    }
+                 
                 
 
             case .failure(let error):
@@ -119,6 +107,31 @@ class Reports_VC: UIViewController {
             }
         }
     }
+    
+    private func uploadImage(reportid: String, image: Data) {
+           APIServices.uploadImage(reportid: reportid, image: image) { (result) in
+               switch result {
+               case .success(let response):
+                   self.ReportsApi()
+                   // Handle success response
+                  self.view.makeToast("Image uploaded successfully")
+                   
+               case .failure(let error):
+                   print("Image upload failed with error: \(error)")
+                   if error == "Response status code was unacceptable: 500." {
+                       appdelegate.gotoSignInVc()
+                       self.view.makeToast("LogIn Session Expired")
+                   } else {
+                       self.ReportsApi()
+                       // Handle success response
+                      self.view.makeToast("Image uploaded successfully")
+                   }
+               }
+           }
+       }
+   }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -129,7 +142,7 @@ class Reports_VC: UIViewController {
     }
     */
 
-}
+
 extension Reports_VC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -150,6 +163,18 @@ extension Reports_VC:UITableViewDelegate,UITableViewDataSource{
         cell.ViewFileBtn.addTarget(self, action: #selector(ReportsViewBtn(sender:)), for: .touchUpInside)
         cell.DateLbl.text = data?.createdAt?.pToDate()?.getFormattedDate(format: "dd-MM-yyyy")
         cell.TimeLbl.text = data?.createdAt?.pToDate()?.currentTimeStamp
+        
+        
+        if(data?.patient_signature != nil){
+            cell.eyeview.isHidden = false
+            cell.signatureview.isHidden = true
+        }else{
+            cell.eyeview.isHidden = true
+            cell.signatureview.isHidden = false
+        }
+        
+        
+        
     
         return cell
     }
@@ -162,5 +187,83 @@ extension Reports_VC:UITableViewDelegate,UITableViewDataSource{
             return 0
         }
     }
+    func loadImageFromDiskWith(fileName: String) -> UIImage? {
+        
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let dirPath = paths.first {
+            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
+            let image = UIImage(contentsOfFile: imageUrl.path)
+            return image
+            
+        }
+        
+        return nil
+    }
+        
     
+}
+extension Reports_VC: signatureVCDelegate {
+   
+    
+    func setPick(pick: UIImage, status: String, id: String) {
+     
+        let image = self.loadImageFromDiskWith(fileName: "PickImg")
+        let string64 = image?.base64(format: .png)
+        let data = "data:image/png;base64,"
+        let finalimage = string64 ?? ""
+        let finalstring = data + finalimage
+        print(status)
+        print(id)
+        let imageData = image?.jpegData(compressionQuality: 0.7) ?? Data()
+        self.uploadImage(reportid: id, image: imageData)
+      
+        
+    }
+    
+    func setDrop(drop: UIImage, status: String, id: String) {
+    
+        let image = loadImageFromDiskWith(fileName: "dropImg")
+        let string64 = image?.base64(format: .png)
+       
+       
+        let data = "data:image/png;base64,"
+        let finalimage = string64 ?? ""
+        let finalstring = data + finalimage
+      //  self.dropUPnotes(id: id, status: status)
+       // self.updatestatusapiwithimage(id: id, status: status, imagestring: finalstring)
+    }
+    
+   
+    
+   
+    
+    func setDone() {
+       
+    }
+    
+    func setCancel() {
+        
+    }
+    
+ 
+    }
+public enum ImageFormat {
+    case png
+    case jpeg(CGFloat)
+}
+
+extension UIImage {
+    
+    public func base64(format: ImageFormat) -> String? {
+        var imageData: Data?
+        switch format {
+        case .png: imageData = self.pngData()
+        case .jpeg(let compression): imageData = self.jpegData(compressionQuality: compression)
+        }
+        return imageData?.base64EncodedString()
+    }
 }

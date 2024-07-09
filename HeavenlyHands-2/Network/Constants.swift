@@ -48,15 +48,15 @@ struct AppConstants {
                 
             }
         }
-//        static var baseURLSearchProduct: URL {
-//            switch AppConstants.API.environment{
-//            case .live:
-//                return URL(string: "https://apix.bazaarghar.com/v2/")!
-//
-//            case .staging:
-//                return URL(string: "https://apix-stage.bazaarghar.com/v2/")!
-//            }
-//        }
+        static var imageurl: URL {
+            switch AppConstants.API.environment{
+            case .live:
+                return URL(string: "https://dev-api-ch.10bytestech.com/storage/")!
+
+            case .staging:
+                return URL(string: "https://dev-api-ch.10bytestech.com/storage/")!
+            }
+        }
 
 //        static var baseURLVideoStreaming: URL {
 //            switch AppConstants.API.environment{

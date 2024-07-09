@@ -19,7 +19,7 @@ class Tasks_VC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.TasksApi()
+       // self.TasksApi()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -57,16 +57,7 @@ class Tasks_VC: UIViewController {
 
     }
     @objc func AddSignatureButton(sender: UIButton){
-        let data = taskmodelArray?.data?[sender.tag]
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let destination = storyboard.instantiateViewController(withIdentifier: "AddSignature_VC") as! AddSignature_VC
-        
-        destination.taskmodelArray = taskmodelArray
-        destination.PathLbl = taskmodelArray?.path ?? ""
-        
-        navigationController?.pushViewController(destination, animated: true)
-        dismiss(animated: true, completion: nil)
         
     }
     @IBAction func NotificationBtn(_ Sender:Any){

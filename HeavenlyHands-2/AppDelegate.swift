@@ -8,13 +8,25 @@
 import UIKit
 import IQKeyboardManagerSwift
 import CoreData
+import Foundation
+import AVFoundation
+import Firebase
+import FirebaseMessaging
+import FirebaseCore
+import FirebaseAuth
+
+import UserNotifications
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var UserModel:CurrentUser? = nil
     var ProfileArray:ProfileModel? = nil
-    
+    var notificationArray: [notificationmodel]? {didSet {}}
+ 
+    let gcmMessageIDKey = "gcm.message_id"
+    var fcmtoken = String()
     let imagebaseurl = ""
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -29,6 +41,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else {
             self.GotoDashBoard()
         }
+        
+        
+           
+           FirebaseApp.configure()
+
+              // [START set_messaging_delegate]
+              Messaging.messaging().delegate = self
+              // [END set_messaging_delegate]
+              // Register for remote notifications. This shows a permission dialog on first run, to
+              // show the dialog at a more appropriate time move this registration accordingly.
+              // [START register_for_notifications]
+              UNUserNotificationCenter.current().delegate = self
+         
+
+              let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+              UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: { _, _ in }
+              )
+
+              application.registerForRemoteNotifications()
+           
+        
+        
         return true
     }
     
@@ -121,11 +157,203 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-}
+    
+    
+    func application(_ application: UIApplication,
+                       didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+          print("Message ID: \(messageID)")
+        }
+
+        // Print full message.
+        print(userInfo)
+      }
+
+      // [START receive_message]
+      func application(_ application: UIApplication,
+                       didReceiveRemoteNotification userInfo: [AnyHashable: Any]) async
+        -> UIBackgroundFetchResult {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+          print("Message ID: \(messageID)")
+        }
+
+        // Print full message.
+        print(userInfo)
+
+        return UIBackgroundFetchResult.newData
+      }
+
+      // [END receive_message]
+      func application(_ application: UIApplication,
+                       didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Unable to register for remote notifications: \(error.localizedDescription)")
+      }
+
+      // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+      // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
+      // the FCM registration token.
+     
+    func application(application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+        let firebaseAuth = Auth.auth()
+        firebaseAuth.setAPNSToken(deviceToken, type: AuthAPNSTokenType.prod)
+        
+        Messaging.messaging().token { (token, error) in
+            if let error = error {
+                print("Error fetching remote instance ID: \(error.localizedDescription)")
+            } else if let token = token {
+                self.fcmtoken = token
+                UserDefaults.standard.set(token , forKey: "Token2")
+                print("Token is firebase \(token)")
+            }
+        }
+    }
+    }
+   
+
 
 
 
 let appdelegate = UIApplication.shared.delegate as! AppDelegate
 
 
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+  // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print(notification)
+     
+        let userInfo = notification.request.content.userInfo
+        
+        print(userInfo)
+        let noti_type  = userInfo["aps"] as? NSDictionary
+        let alert  = noti_type?["alert"] as? NSDictionary
+        print(alert)
+        let date = Date()
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd h:mm a"
+        let dateString = df.string(from: date)
+        print(dateString)
+        
+        let trip = notificationmodel()
+        trip.title = alert?["title"] as? String ?? ""
+        trip.body = alert?["body"] as? String ?? ""
+        trip.dates = dateString
+        UserDefaults.standard.set(alert?["body"] as? String ?? "" , forKey: "appointtime")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationpopup"), object: nil)
+        self.notificationArray = notificationmodel.readUserFromArchive()
+        
+      
+        
+      
+        
+        
+        self.notificationArray?.append(trip)
+        
+        if notificationmodel.saveUserToArchive(notificationmodels: self.notificationArray ?? []){
+            
+        }
+       
+//        completionHandler([UNNotificationPresentationOptions.sound , UNNotificationPresentationOptions.alert , UNNotificationPresentationOptions.badge])
+//
+       
+        switch UIApplication.shared.applicationState {
+
+        case .active:
+            if #available(iOS 15.0, *) {
+//                completionHandler([UNNotificationPresentationOptions.sound , UNNotificationPresentationOptions.alert , UNNotificationPresentationOptions.badge])
+                completionHandler([.banner, .sound])
+                
+            } else {
+                // Fallback on earlier versions
+                completionHandler([.banner, .sound])
+            }
+        default:
+            if #available(iOS 15.0, *) {
+                completionHandler([.banner, .sound])
+            } else {
+                // Fallback on earlier versions
+                completionHandler([.banner, .sound])
+            }
+        }
+      
+    }
+
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              didReceive response: UNNotificationResponse) async {
+    let userInfo = response.notification.request.content.userInfo
+
+    // [START_EXCLUDE]
+    // Print message ID.
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
+    // [END_EXCLUDE]
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // Messaging.messaging().appDidReceiveMessage(userInfo)
+    // Print full message.
+    print(userInfo)
+      let noti_type  = userInfo["aps"] as? NSDictionary
+      let alert  = noti_type?["alert"] as? NSDictionary
+      print(alert)
+      let date = Date()
+      let df = DateFormatter()
+      df.dateFormat = "yyyy-MM-dd h:mm a"
+      let dateString = df.string(from: date)
+      print(dateString)
+      
+      let trip = notificationmodel()
+      trip.title = alert?["title"] as? String ?? ""
+      trip.body = alert?["body"] as? String ?? ""
+      trip.dates = dateString
+      UserDefaults.standard.set(alert?["body"] as? String ?? "" , forKey: "appointtime")
+      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationpopup"), object: nil)
+      self.notificationArray = notificationmodel.readUserFromArchive()
+      
+    
+      
+    
+      
+      
+      self.notificationArray?.append(trip)
+      
+      if notificationmodel.saveUserToArchive(notificationmodels: self.notificationArray ?? []){
+          
+      }
+     
+  }
+}
+
+// [END ios_10_message_handling]
+extension AppDelegate: MessagingDelegate {
+  // [START refresh_token]
+  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+    print("Firebase registration token: \(String(describing: fcmToken))")
+      UserDefaults.standard.set(fcmToken ?? "" , forKey: "Token2")
+
+    let dataDict: [String: String] = ["token": fcmToken ?? ""]
+    NotificationCenter.default.post(
+      name: Notification.Name("FCMToken"),
+      object: nil,
+      userInfo: dataDict
+    )
+    // TODO: If necessary send token to application server.
+    // Note: This callback is fired at each app startup and whenever a new token is generated.
+  }
+
+  // [END refresh_token]
+}
 

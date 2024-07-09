@@ -23,8 +23,8 @@ class Menu_VC: UIViewController {
         MenuTbl.delegate = self
         MenuTbl.dataSource = self
         
-        MenuItems = ["Dashboard","Reports","Documents","Tasks","Appointments","Chat"]
-        MenuImages = ["dashboard-icon","google-docs-icon","document-icon","list_icon","calendar-icon","chat-icon"]
+        MenuItems = ["Dashboard","Reports","Documents","Tasks","Appointments"]
+        MenuImages = ["dashboard-icon","google-docs-icon","document-icon","list_icon","calendar-icon"]
         
         
 //        self.view.backgroundColor = .gray

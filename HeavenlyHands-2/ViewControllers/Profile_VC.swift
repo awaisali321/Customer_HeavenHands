@@ -51,11 +51,12 @@ class Profile_VC: UIViewController {
         
     }
     private  func ProfileApi(_ first_name:String,_ last_name:String,_ date_of_birth:String,_ gender:String,_ email:String,_ cnic:String,_ ssn:String,_ mobile_number:String,_ home_number:String,_ street_address:String,_ city:String,_ state:String,_ zip_code:String) {
+       
         APIServices.ProfileApi(first_name:first_name,last_name: last_name,date_of_birth: date_of_birth,gender: gender,email: email,cnic: cnic,ssn: ssn,mobile_number: mobile_number,home_number: home_number,street_address: street_address,city: city,state: state,zip_code: zip_code) {(result) in
             switch result{
             case .success(let response):
                 self.ProfileArray = response
-  
+                self.itemsArray.removeAll()
                 self.itemsArray.append(response.email ?? "")
                 self.itemsArray.append(response.mobileNumber ?? "")
                 self.itemsArray.append(response.address?.streetAddress ?? "")
@@ -107,10 +108,7 @@ class Profile_VC: UIViewController {
             // Iterate through text fields in cells to retrieve edited data and save it
             
 //            var editedDataArray = [String]()
-            for cell in ProfileTbl.visibleCells as! [ProfileVC_Cell] {
-                itemsArray.append(cell.DetailsFld.text ?? "")
-                
-            }
+           
             
             // Here, you can handle saving the edited data
             // e.g., you can update your data model with the new values in editedDataArray

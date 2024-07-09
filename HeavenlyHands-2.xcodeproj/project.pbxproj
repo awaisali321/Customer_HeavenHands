@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23DFE900912E0EE284EB865D /* Pods_HeavenlyHands_2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30291BEE61D282B738E211C8 /* Pods_HeavenlyHands_2Tests.framework */; };
-		45F77634A75E3BB71F5897F9 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E417EC76746D1C2F989F32 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework */; };
-		AE7DFA96955194C360B30FD3 /* Pods_HeavenlyHands_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B613588F7DAF46475142F1 /* Pods_HeavenlyHands_2.framework */; };
+		181877012C3C782D00E91C46 /* signatureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181877002C3C782D00E91C46 /* signatureVC.swift */; };
+		181877042C3C794F00E91C46 /* SwiftySignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181877022C3C794F00E91C46 /* SwiftySignature.swift */; };
+		181877052C3C794F00E91C46 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181877032C3C794F00E91C46 /* YPDrawSignatureView.swift */; };
+		18E25A182C3D42D700037D6A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18E25A172C3D42D600037D6A /* GoogleService-Info.plist */; };
+		6580B0AFC31D443EAB812B20 /* Pods_HeavenlyHands_2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7759C7FE6C4C96D6C584E974 /* Pods_HeavenlyHands_2Tests.framework */; };
+		82446BB43EC0AB03B1EFACF9 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D609618549163C8B8960B0 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework */; };
+		ADEA79C941EE3B8E278175EB /* Pods_HeavenlyHands_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7EE130B4E417E8F827C712 /* Pods_HeavenlyHands_2.framework */; };
 		C10B582F2B7E19D00092A310 /* Documents_View_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10B582E2B7E19D00092A310 /* Documents_View_VC.swift */; };
 		C146CAB82B73EA640057C707 /* Senders_Chats_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C146CAB72B73EA640057C707 /* Senders_Chats_Cell.swift */; };
 		C146CABA2B73EA730057C707 /* Recivers_Chats_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C146CAB92B73EA730057C707 /* Recivers_Chats_Cell.swift */; };
@@ -91,7 +95,6 @@
 		C18C8A9F2B4F31C1006D72D6 /* ProfileVC_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C8A9E2B4F31C1006D72D6 /* ProfileVC_Cell.swift */; };
 		C1C0AA992B5011BF00BF80A0 /* GeneralDetails_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C0AA982B5011BF00BF80A0 /* GeneralDetails_VC.swift */; };
 		C1C0AA9B2B5026AA00BF80A0 /* GeneralDetailsVC_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C0AA9A2B5026AA00BF80A0 /* GeneralDetailsVC_Cell.swift */; };
-		C1C0AA9D2B52ACF300BF80A0 /* AddSignature_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C0AA9C2B52ACF300BF80A0 /* AddSignature_VC.swift */; };
 		C1DC29582B614BAD005EBDBD /* ReportsView_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC29572B614BAD005EBDBD /* ReportsView_VC.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,11 +116,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		163AF7D31EC9C91D21EA269C /* Pods-HeavenlyHands-2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2Tests.debug.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2Tests/Pods-HeavenlyHands-2Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		19D36C31CFF391E64870F06E /* Pods-HeavenlyHands-2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2Tests.release.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2Tests/Pods-HeavenlyHands-2Tests.release.xcconfig"; sourceTree = "<group>"; };
-		30291BEE61D282B738E211C8 /* Pods_HeavenlyHands_2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeavenlyHands_2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8508AFA7F1CDECB8085423A9 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig"; sourceTree = "<group>"; };
-		A99F21AB67CC8DDBA29D7057 /* Pods-HeavenlyHands-2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2.release.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2/Pods-HeavenlyHands-2.release.xcconfig"; sourceTree = "<group>"; };
+		181877002C3C782D00E91C46 /* signatureVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signatureVC.swift; sourceTree = "<group>"; };
+		181877022C3C794F00E91C46 /* SwiftySignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftySignature.swift; sourceTree = "<group>"; };
+		181877032C3C794F00E91C46 /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
+		18E25A162C3D429500037D6A /* HeavenlyHands-2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HeavenlyHands-2.entitlements"; sourceTree = "<group>"; };
+		18E25A172C3D42D600037D6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1C75E16029EFE13CFC446A58 /* Pods-HeavenlyHands-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2.debug.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2/Pods-HeavenlyHands-2.debug.xcconfig"; sourceTree = "<group>"; };
+		26EBF77CB645E5F868473667 /* Pods-HeavenlyHands-2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2.release.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2/Pods-HeavenlyHands-2.release.xcconfig"; sourceTree = "<group>"; };
+		4A9B2A3403DB5DD8BF66FF4F /* Pods-HeavenlyHands-2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2Tests.release.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2Tests/Pods-HeavenlyHands-2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		60FAB790269BFCE67D9A93A7 /* Pods-HeavenlyHands-2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2Tests.debug.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2Tests/Pods-HeavenlyHands-2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		7759C7FE6C4C96D6C584E974 /* Pods_HeavenlyHands_2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeavenlyHands_2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BC1949706FB26D315BD7C14 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		A3D609618549163C8B8960B0 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC7EE130B4E417E8F827C712 /* Pods_HeavenlyHands_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeavenlyHands_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDC60D32EED4991F84ADACC6 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C10B582E2B7E19D00092A310 /* Documents_View_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documents_View_VC.swift; sourceTree = "<group>"; };
 		C146CAB72B73EA640057C707 /* Senders_Chats_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Senders_Chats_Cell.swift; sourceTree = "<group>"; };
 		C146CAB92B73EA730057C707 /* Recivers_Chats_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recivers_Chats_Cell.swift; sourceTree = "<group>"; };
@@ -203,12 +215,7 @@
 		C18C8A9E2B4F31C1006D72D6 /* ProfileVC_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC_Cell.swift; sourceTree = "<group>"; };
 		C1C0AA982B5011BF00BF80A0 /* GeneralDetails_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralDetails_VC.swift; sourceTree = "<group>"; };
 		C1C0AA9A2B5026AA00BF80A0 /* GeneralDetailsVC_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralDetailsVC_Cell.swift; sourceTree = "<group>"; };
-		C1C0AA9C2B52ACF300BF80A0 /* AddSignature_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSignature_VC.swift; sourceTree = "<group>"; };
 		C1DC29572B614BAD005EBDBD /* ReportsView_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView_VC.swift; sourceTree = "<group>"; };
-		C8B613588F7DAF46475142F1 /* Pods_HeavenlyHands_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeavenlyHands_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB96F537B7552118FCA42774 /* Pods-HeavenlyHands-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2.debug.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2/Pods-HeavenlyHands-2.debug.xcconfig"; sourceTree = "<group>"; };
-		F7BED0D7A60E4A34597193D0 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F9E417EC76746D1C2F989F32 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,7 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE7DFA96955194C360B30FD3 /* Pods_HeavenlyHands_2.framework in Frameworks */,
+				ADEA79C941EE3B8E278175EB /* Pods_HeavenlyHands_2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23DFE900912E0EE284EB865D /* Pods_HeavenlyHands_2Tests.framework in Frameworks */,
+				6580B0AFC31D443EAB812B20 /* Pods_HeavenlyHands_2Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45F77634A75E3BB71F5897F9 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework in Frameworks */,
+				82446BB43EC0AB03B1EFACF9 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,12 +249,12 @@
 		03552D6E5AFD4823113A3680 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EB96F537B7552118FCA42774 /* Pods-HeavenlyHands-2.debug.xcconfig */,
-				A99F21AB67CC8DDBA29D7057 /* Pods-HeavenlyHands-2.release.xcconfig */,
-				F7BED0D7A60E4A34597193D0 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig */,
-				8508AFA7F1CDECB8085423A9 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig */,
-				163AF7D31EC9C91D21EA269C /* Pods-HeavenlyHands-2Tests.debug.xcconfig */,
-				19D36C31CFF391E64870F06E /* Pods-HeavenlyHands-2Tests.release.xcconfig */,
+				1C75E16029EFE13CFC446A58 /* Pods-HeavenlyHands-2.debug.xcconfig */,
+				26EBF77CB645E5F868473667 /* Pods-HeavenlyHands-2.release.xcconfig */,
+				BDC60D32EED4991F84ADACC6 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig */,
+				9BC1949706FB26D315BD7C14 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig */,
+				60FAB790269BFCE67D9A93A7 /* Pods-HeavenlyHands-2Tests.debug.xcconfig */,
+				4A9B2A3403DB5DD8BF66FF4F /* Pods-HeavenlyHands-2Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -393,7 +400,7 @@
 				C18C8A6F2B4EC05C006D72D6 /* HeavenlyHands-2UITests */,
 				C18C8A4D2B4EC05A006D72D6 /* Products */,
 				03552D6E5AFD4823113A3680 /* Pods */,
-				FF4EE366E3FA747887ABE037 /* Frameworks */,
+				C98AAD0E644785AE7EFD27C2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -410,6 +417,8 @@
 		C18C8A4E2B4EC05A006D72D6 /* HeavenlyHands-2 */ = {
 			isa = PBXGroup;
 			children = (
+				18E25A172C3D42D600037D6A /* GoogleService-Info.plist */,
+				18E25A162C3D429500037D6A /* HeavenlyHands-2.entitlements */,
 				C17835722B56C2DB0071C3AF /* Helpers */,
 				C18A97CA2B56BB6C00AF0E8E /* Models */,
 				C18A97CC2B56BB6C00AF0E8E /* Network */,
@@ -444,6 +453,9 @@
 		C18C8A7F2B4EC0C2006D72D6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				181877022C3C794F00E91C46 /* SwiftySignature.swift */,
+				181877032C3C794F00E91C46 /* YPDrawSignatureView.swift */,
+				181877002C3C782D00E91C46 /* signatureVC.swift */,
 				C18C8A532B4EC05A006D72D6 /* Documents_VC.swift */,
 				C10B582E2B7E19D00092A310 /* Documents_View_VC.swift */,
 				C18C8A832B4EDC78006D72D6 /* Reports_VC.swift */,
@@ -456,7 +468,6 @@
 				C18C8A982B4F220F006D72D6 /* Appointments_VC.swift */,
 				C18C8A9C2B4F27A2006D72D6 /* Profile_VC.swift */,
 				C1C0AA982B5011BF00BF80A0 /* GeneralDetails_VC.swift */,
-				C1C0AA9C2B52ACF300BF80A0 /* AddSignature_VC.swift */,
 				C178350E2B56C0620071C3AF /* Login_VC.swift */,
 				C17835102B56C0890071C3AF /* ForgotPassword_VC.swift */,
 				C17835122B56C0AE0071C3AF /* NewPassword_VC.swift */,
@@ -483,12 +494,12 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		FF4EE366E3FA747887ABE037 /* Frameworks */ = {
+		C98AAD0E644785AE7EFD27C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C8B613588F7DAF46475142F1 /* Pods_HeavenlyHands_2.framework */,
-				F9E417EC76746D1C2F989F32 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework */,
-				30291BEE61D282B738E211C8 /* Pods_HeavenlyHands_2Tests.framework */,
+				AC7EE130B4E417E8F827C712 /* Pods_HeavenlyHands_2.framework */,
+				A3D609618549163C8B8960B0 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework */,
+				7759C7FE6C4C96D6C584E974 /* Pods_HeavenlyHands_2Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -500,11 +511,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C18C8A762B4EC05C006D72D6 /* Build configuration list for PBXNativeTarget "HeavenlyHands-2" */;
 			buildPhases = (
-				F41FCEDA6F5C86898462C3BC /* [CP] Check Pods Manifest.lock */,
+				658BA324AA356F1D8502B748 /* [CP] Check Pods Manifest.lock */,
 				C18C8A482B4EC059006D72D6 /* Sources */,
 				C18C8A492B4EC059006D72D6 /* Frameworks */,
 				C18C8A4A2B4EC059006D72D6 /* Resources */,
-				5F5A76223A1D568BE8072891 /* [CP] Embed Pods Frameworks */,
+				44CF37B6BEDD969A1D1BF541 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -519,7 +530,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C18C8A792B4EC05C006D72D6 /* Build configuration list for PBXNativeTarget "HeavenlyHands-2Tests" */;
 			buildPhases = (
-				33EC223757BDE4AEECC64D39 /* [CP] Check Pods Manifest.lock */,
+				81369F26DD19EA8FF7C05BC5 /* [CP] Check Pods Manifest.lock */,
 				C18C8A5E2B4EC05B006D72D6 /* Sources */,
 				C18C8A5F2B4EC05B006D72D6 /* Frameworks */,
 				C18C8A602B4EC05B006D72D6 /* Resources */,
@@ -538,11 +549,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C18C8A7C2B4EC05C006D72D6 /* Build configuration list for PBXNativeTarget "HeavenlyHands-2UITests" */;
 			buildPhases = (
-				B258658D6836C59A8611027B /* [CP] Check Pods Manifest.lock */,
+				70EA4547518C524B1268C2F1 /* [CP] Check Pods Manifest.lock */,
 				C18C8A682B4EC05C006D72D6 /* Sources */,
 				C18C8A692B4EC05C006D72D6 /* Frameworks */,
 				C18C8A6A2B4EC05C006D72D6 /* Resources */,
-				5FA415D202FAC81012E7B680 /* [CP] Embed Pods Frameworks */,
+				F9FA46C4A40B141725E3BF18 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -613,6 +624,7 @@
 				C18C8A5C2B4EC05B006D72D6 /* LaunchScreen.storyboard in Resources */,
 				C17835C02B56C2DB0071C3AF /* OFL.txt in Resources */,
 				C17835C12B56C2DB0071C3AF /* Poppins-Regular.ttf in Resources */,
+				18E25A182C3D42D700037D6A /* GoogleService-Info.plist in Resources */,
 				C17835B32B56C2DB0071C3AF /* ag-streamer-sdk.key in Resources */,
 				C17835C62B56C2DB0071C3AF /* jssource.js in Resources */,
 				C18C8A592B4EC05B006D72D6 /* Assets.xcassets in Resources */,
@@ -640,29 +652,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33EC223757BDE4AEECC64D39 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HeavenlyHands-2Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F5A76223A1D568BE8072891 /* [CP] Embed Pods Frameworks */ = {
+		44CF37B6BEDD969A1D1BF541 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -679,46 +669,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeavenlyHands-2/Pods-HeavenlyHands-2-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5FA415D202FAC81012E7B680 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B258658D6836C59A8611027B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HeavenlyHands-2-HeavenlyHands-2UITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F41FCEDA6F5C86898462C3BC /* [CP] Check Pods Manifest.lock */ = {
+		658BA324AA356F1D8502B748 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -740,6 +691,67 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		70EA4547518C524B1268C2F1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HeavenlyHands-2-HeavenlyHands-2UITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81369F26DD19EA8FF7C05BC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HeavenlyHands-2Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9FA46C4A40B141725E3BF18 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeavenlyHands-2-HeavenlyHands-2UITests/Pods-HeavenlyHands-2-HeavenlyHands-2UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -756,6 +768,7 @@
 				C17835A82B56C2DB0071C3AF /* VSSlider.swift in Sources */,
 				C146CABA2B73EA730057C707 /* Recivers_Chats_Cell.swift in Sources */,
 				C18A97DD2B56BB6C00AF0E8E /* Provider.swift in Sources */,
+				181877012C3C782D00E91C46 /* signatureVC.swift in Sources */,
 				C146CAB82B73EA640057C707 /* Senders_Chats_Cell.swift in Sources */,
 				C18A97DB2B56BB6C00AF0E8E /* APIService.swift in Sources */,
 				C17835A32B56C2DB0071C3AF /* Constant.swift in Sources */,
@@ -786,6 +799,7 @@
 				C17835C52B56C2DB0071C3AF /* CBUUIDs.swift in Sources */,
 				C18C8A9F2B4F31C1006D72D6 /* ProfileVC_Cell.swift in Sources */,
 				C17835A92B56C2DB0071C3AF /* InternalSlider.swift in Sources */,
+				181877042C3C794F00E91C46 /* SwiftySignature.swift in Sources */,
 				C18A97DA2B56BB6C00AF0E8E /* Services.swift in Sources */,
 				C18A97DE2B56BB6C00AF0E8E /* NetworkManager.swift in Sources */,
 				C18C8A8D2B4EE2F3006D72D6 /* MenuVC_Cell.swift in Sources */,
@@ -806,8 +820,8 @@
 				C17835AD2B56C2DB0071C3AF /* Extensions.swift in Sources */,
 				C17835C92B56C2DB0071C3AF /* ScrollableSegmentedControl.swift in Sources */,
 				C17835C82B56C2DB0071C3AF /* LocationManager.swift in Sources */,
+				181877052C3C794F00E91C46 /* YPDrawSignatureView.swift in Sources */,
 				C17835AA2B56C2DB0071C3AF /* ColorPickers.swift in Sources */,
-				C1C0AA9D2B52ACF300BF80A0 /* AddSignature_VC.swift in Sources */,
 				C18A97D92B56BB6C00AF0E8E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -980,16 +994,17 @@
 		};
 		C18C8A772B4EC05C006D72D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB96F537B7552118FCA42774 /* Pods-HeavenlyHands-2.debug.xcconfig */;
+			baseConfigurationReference = 1C75E16029EFE13CFC446A58 /* Pods-HeavenlyHands-2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HeavenlyHands-2/HeavenlyHands-2.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.6;
 				DEVELOPMENT_TEAM = WCMW28F998;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HeavenlyHands-2/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "A1 Patient App";
+				INFOPLIST_KEY_CFBundleDisplayName = "Cheryl Hecht (Patient)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_NSCameraUsageDescription = "For Uploading Documents";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "For Saving Photos";
@@ -1000,7 +1015,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1016,16 +1031,17 @@
 		};
 		C18C8A782B4EC05C006D72D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A99F21AB67CC8DDBA29D7057 /* Pods-HeavenlyHands-2.release.xcconfig */;
+			baseConfigurationReference = 26EBF77CB645E5F868473667 /* Pods-HeavenlyHands-2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HeavenlyHands-2/HeavenlyHands-2.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.6;
 				DEVELOPMENT_TEAM = WCMW28F998;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HeavenlyHands-2/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "A1 Patient App";
+				INFOPLIST_KEY_CFBundleDisplayName = "Cheryl Hecht (Patient)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_NSCameraUsageDescription = "For Uploading Documents";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "For Saving Photos";
@@ -1036,7 +1052,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1052,7 +1068,7 @@
 		};
 		C18C8A7A2B4EC05C006D72D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 163AF7D31EC9C91D21EA269C /* Pods-HeavenlyHands-2Tests.debug.xcconfig */;
+			baseConfigurationReference = 60FAB790269BFCE67D9A93A7 /* Pods-HeavenlyHands-2Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1072,7 +1088,7 @@
 		};
 		C18C8A7B2B4EC05C006D72D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19D36C31CFF391E64870F06E /* Pods-HeavenlyHands-2Tests.release.xcconfig */;
+			baseConfigurationReference = 4A9B2A3403DB5DD8BF66FF4F /* Pods-HeavenlyHands-2Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1092,7 +1108,7 @@
 		};
 		C18C8A7D2B4EC05C006D72D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7BED0D7A60E4A34597193D0 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig */;
+			baseConfigurationReference = BDC60D32EED4991F84ADACC6 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1110,7 +1126,7 @@
 		};
 		C18C8A7E2B4EC05C006D72D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8508AFA7F1CDECB8085423A9 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig */;
+			baseConfigurationReference = 9BC1949706FB26D315BD7C14 /* Pods-HeavenlyHands-2-HeavenlyHands-2UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
