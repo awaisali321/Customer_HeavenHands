@@ -21,10 +21,10 @@ class GeneralDetails_VC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.detailDataArray.append(ProfileArray?.cnic ?? "")
-        self.detailDataArray.append(ProfileArray?.gender ?? "")
-        self.detailDataArray.append(ProfileArray?.homeNumber ?? "")
-        self.detailDataArray.append(ProfileArray?.ssn ?? "")
+        self.detailDataArray.append(AppDefault.currentUser?.cnic ?? "")
+        self.detailDataArray.append(AppDefault.currentUser?.gender ?? "")
+        self.detailDataArray.append(AppDefault.currentUser?.homeNumber ?? "")
+        self.detailDataArray.append(AppDefault.currentUser?.ssn ?? "")
         self.detailArray = ["CIN","Gender","Height","Weight"]
      
         self.nameLbl.text = (AppDefault.currentUser?.firstName ?? "") + " " + (AppDefault.currentUser?.lastName ?? "")

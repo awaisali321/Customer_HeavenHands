@@ -107,8 +107,11 @@ extension Documents_VC:UITableViewDelegate,UITableViewDataSource{
         Documents_Cell
         let data = DocumentsmodelArray?.data?[indexPath.row]
         cell.DocumentNameLbl.text = data?.type
-        cell.DateLbl.text = data?.createdAt?.pToDate()?.getFormattedDate(format: "dd-MM-yyyy")
-        cell.TimeLbl.text = data?.createdAt?.pToDate()?.currentTimeStamp
+        cell.DateLbl.text = self.setdate(setdate: data?.createdAt ?? "", format: "dd-MM-yyyy")
+     
+        cell.TimeLbl.text = self.setdate(setdate: data?.createdAt ?? "", format: "hh:mm a")
+        
+        
         
         cell.ViewDocumentsBtn.tag = indexPath.row
         cell.ViewDocumentsBtn.addTarget(self, action: #selector(DocumentsViewBtn(sender:)), for: .touchUpInside)
@@ -118,6 +121,31 @@ extension Documents_VC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+        
+    }
+    func setdate(setdate:String,format:String)->String{
+        
+        
+        
+        
+  
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+       
+        
+//
+//        let formatter = DateFormatter()
+//
+//        formatter.dateFormat = "yyyy-MM-ddTHH:mm:ss.SSS ZZZZ"
+        let result = formatter.date(from: setdate) ?? Date()
+        
+        let formatter2 = DateFormatter()
+        formatter2.dateFormat = format
+        let result3 = formatter2.string(from: result)
+        
+
+        return result3
         
     }
     

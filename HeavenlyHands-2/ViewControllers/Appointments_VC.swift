@@ -9,11 +9,18 @@ import UIKit
 
 class Appointments_VC: UIViewController {
     @IBOutlet weak var AppointmentsTbl:UITableView!
+    @IBOutlet weak var nodatafound: UIView!
     var ApoinmentsNamesArray = [String]()
     var TimeArray = [String]()
     var DatesArray = [String]()
     var AppointmentsmodelArray:AppointmentsModel? {
         didSet{
+            if(AppointmentsmodelArray?.data?.count ?? 0 > 0){
+                nodatafound.isHidden = true
+            }else{
+                nodatafound.isHidden = false
+            }
+            
             AppointmentsTbl.reloadData()
         }
     }
@@ -63,11 +70,6 @@ class Appointments_VC: UIViewController {
             case .success(let response):
                 self.AppointmentsmodelArray = response
                
-                if(response.data?.isEmpty == true){
-                    self.view.makeToast("No Data Found")
-                }else{
-                    
-                }
 
             case .failure(let error):
                 if(error == "Response status code was unacceptable: 500."){

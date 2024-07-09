@@ -11,7 +11,7 @@ class Login_VC: UIViewController {
     @IBOutlet weak var UserNameFld:UITextField!
     @IBOutlet weak var PasswordFld:UITextField!
     @IBOutlet weak var rememberMe_button:UIButton!
-    
+    var notificationArray: [notificationmodel]? {didSet {}}
     override func viewDidLoad() {
         super.viewDidLoad()
         if (UserDefaults.standard.object(forKey: "isremeber") as? Bool ?? false){
@@ -29,7 +29,12 @@ class Login_VC: UIViewController {
     var modelLogin: Userdata? {
         didSet {
             if modelLogin?.token != "" {
-                
+                self.notificationArray = notificationmodel.readUserFromArchive()
+                self.notificationArray?.removeAll()
+                if notificationmodel.saveUserToArchive(notificationmodels: self.notificationArray ?? []){
+                   
+                }
+             
                 UserDefaults.standard.set(self.modelLogin?.token ?? "", forKey: "token")
                 
             }

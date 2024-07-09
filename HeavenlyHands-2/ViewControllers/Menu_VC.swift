@@ -12,6 +12,7 @@ class Menu_VC: UIViewController {
     var MenuItems = [String]()
     var MenuImages = [String]()
     var LogoutModel:LogOutModel? = nil
+    var notificationArray: [notificationmodel]? {didSet {}}
    
     let kMainStoryBoard =   UIStoryboard(name: "Main", bundle: nil)
     override func viewDidLoad() {
@@ -66,6 +67,11 @@ class Menu_VC: UIViewController {
 
     }
     @IBAction func LogOutBtn(_ Sender:Any){
+        self.notificationArray = notificationmodel.readUserFromArchive()
+        self.notificationArray?.removeAll()
+        if notificationmodel.saveUserToArchive(notificationmodels: self.notificationArray ?? []){
+           
+        }
         UserDefaults.standard.set(false, forKey: "islogin")
         UserDefaults.standard.set("", forKey: "Username")
         UserDefaults.standard.set("", forKey: "password")
