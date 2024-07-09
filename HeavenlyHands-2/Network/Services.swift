@@ -158,9 +158,11 @@ enum Services {
     case ReportsApi
     case DocumentsApi
     case AppointmentsApi
+  case notificationapi
     case LogOutApi
     case ProfileApi(first_name: String, last_name: String, date_of_birth: String, gender: String, email: String, cnic: String, ssn: String, mobile_number: String, home_number: String, street_address: String, city: String, state: String, zip_code: String)
     case uploadImage(image: Data,reportid: String)
+    case uploadprofile(image: Data,reportid: String)
 }
 
 extension Services: TargetType, AccessTokenAuthorizable {
@@ -185,8 +187,13 @@ extension Services: TargetType, AccessTokenAuthorizable {
             return "auth/logout"
         case .ProfileApi:
             return "patient/profile"
+        case .notificationapi:
+            return "fcm-token"
         case let .uploadImage(_,reportid):
             return "\(reportid)/report_signature"
+        case let .uploadprofile(_,reportid):
+            return "\(reportid)/file"
+           
        
         }
     }
@@ -208,11 +215,17 @@ extension Services: TargetType, AccessTokenAuthorizable {
         switch self {
         case let .loginApi(email, password):
             return .requestParameters(parameters: ["email": email, "password": password], encoding: JSONEncoding.default)
+        case  .notificationapi:
+            return .requestParameters(parameters: ["fcm_token": (UserDefaults.standard.object(forKey: "Token2") as? String ?? "")], encoding: JSONEncoding.default)
         case let .ProfileApi(first_name, last_name, date_of_birth, gender, email, cnic, ssn, mobile_number, home_number, street_address, city, state, zip_code):
             return .requestParameters(parameters: ["first_name": first_name, "last_name": last_name, "date_of_birth": date_of_birth, "gender": gender, "email": email, "cnic": cnic, "ssn": ssn, "mobile_number": mobile_number, "home_number": home_number, "street_address": street_address, "city": city, "state": state, "zip_code": zip_code], encoding: JSONEncoding.default)
         case let .uploadImage(images,_):
            
             let multipartData = MultipartFormData(provider: .data(images), name: "signature", fileName: "signature.png", mimeType: "image/png")
+            return .uploadMultipart([multipartData])
+        case let .uploadprofile(images,_):
+           
+            let multipartData = MultipartFormData(provider: .data(images), name: "File", fileName: "File.png", mimeType: "image/png")
             return .uploadMultipart([multipartData])
         default:
             return .requestPlain
@@ -233,7 +246,7 @@ extension Services: TargetType, AccessTokenAuthorizable {
 
     var authorizationType: AuthorizationType {
         switch self {
-        case .TasksApi, .ReportsApi, .DocumentsApi, .AppointmentsApi, .LogOutApi, .ProfileApi, .uploadImage:
+        case .TasksApi, .ReportsApi, .DocumentsApi, .AppointmentsApi, .LogOutApi, .ProfileApi, .uploadImage ,.uploadprofile ,.notificationapi:
             return .bearer
         default:
             return .none

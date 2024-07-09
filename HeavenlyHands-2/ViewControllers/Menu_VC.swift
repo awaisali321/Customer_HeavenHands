@@ -66,8 +66,11 @@ class Menu_VC: UIViewController {
 
     }
     @IBAction func LogOutBtn(_ Sender:Any){
-        appdelegate.gotoSignInVc()
-        self.LogOutApi()
+        UserDefaults.standard.set(false, forKey: "islogin")
+        UserDefaults.standard.set("", forKey: "Username")
+        UserDefaults.standard.set("", forKey: "password")
+           
+            appdelegate.gotoSignInVc()
     }
 
     /*

@@ -9,10 +9,24 @@ import UIKit
 
 class Notifications_VC: UIViewController {
     @IBOutlet weak var NotificationTbl:UITableView!
-    
+    @IBOutlet weak var nodataview: UIView!
+    var notificationArray: [notificationmodel]? {didSet {}}
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NotificationTbl.register(UINib(nibName: "NotificationCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")
+        NotificationTbl.delegate = self
+        NotificationTbl.dataSource = self
+        
+        notificationArray = notificationmodel.readUserFromArchive()
+        
+        
+        if(notificationArray?.count ?? 0 > 0){
+            self.nodataview.isHidden = true
+        }else{
+            self.nodataview.isHidden = false
+        }
+        self.NotificationTbl.reloadData()
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -36,17 +50,31 @@ class Notifications_VC: UIViewController {
 }
 extension Notifications_VC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return notificationArray?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = NotificationTbl.dequeueReusableCell(withIdentifier: "NotificationsVC_Cell", for: indexPath)as! NotificationsVC_Cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as! NotificationCell
+        let data = notificationArray?[indexPath.row]
+        cell.titlelbl.text = data?.title
+        cell.body.text = data?.body
+        cell.datelbl.text = data?.dates
         
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+     
+      
+      
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 120
     }
     
 }
+//
+//  PatientsVC.swift
+//  HEAVENLY_HANDS
+//
+//  Created by Subhan Ilyas on 16/01/2023.
+//

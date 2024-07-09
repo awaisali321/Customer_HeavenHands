@@ -77,6 +77,21 @@ class APIServices{
             }
         }
     }
+    class func notificationapi(completion:@escaping(APIResult<Bool>)->Void){
+        Provider.services.request(.notificationapi) { result in
+            do{
+                
+                let User: Bool = try result.decoded()
+                
+                
+                completion(.success(User))
+            }catch{
+                print("-----Error------ \n",error)
+                completion(.failure(error.customDescription))
+            }
+        }
+    }
+    
     
     class func DocumentsApi(completion:@escaping(APIResult<DocumentsModel>)->Void){
         Provider.services.request(.DocumentsApi) { result in
@@ -141,6 +156,17 @@ class APIServices{
     }
     class func uploadImage(reportid: String, image: Data, completion: @escaping(APIResult<Bool>) -> Void) {
             Provider.services.request(.uploadImage(image: image, reportid: reportid)) { result in
+                do {
+                    let response: Bool = try result.decoded()
+                    completion(.success(response))
+                } catch {
+                    print("-----Error------ \n", error)
+                    completion(.failure(error.customDescription))
+                }
+            }
+        }
+    class func uploadprofile(reportid: String, image: Data, completion: @escaping(APIResult<Bool>) -> Void) {
+            Provider.services.request(.uploadprofile(image: image, reportid: reportid)) { result in
                 do {
                     let response: Bool = try result.decoded()
                     completion(.success(response))

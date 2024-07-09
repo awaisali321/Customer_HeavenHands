@@ -24,8 +24,8 @@ struct CurrentUser: Codable {
     let id: Int?
         let firstName, lastName: String?
         let userID: Int?
-        let mobileNumber, homeNumber, gender, email: String?
-        let dateOfBirth: String?
+        var mobileNumber, homeNumber, gender, email: String?
+        var dateOfBirth: String?
         let file: String?
         let cnic, ssn, encodedSsn: String?
         let deletedAt: String?
@@ -34,7 +34,7 @@ struct CurrentUser: Codable {
         let doctorName, doctorContact, otherInformationContactName, otherInformationContactNumber: String?
         let homeCareAgencyName, homeCareAgencyPhone, pharmacyName, pharmacyPhone: String?
         let name, mobileNumberForPhone, homeNumberForPhone: String?
-
+    var address: Address?
         enum CodingKeys: String, CodingKey {
             case id
             case firstName = "first_name"
@@ -61,6 +61,7 @@ struct CurrentUser: Codable {
             case name
             case mobileNumberForPhone = "mobile_number_for_phone"
             case homeNumberForPhone = "home_number_for_phone"
+            case address
         }
 
     public static var shared: CurrentUser!
@@ -119,8 +120,8 @@ struct Address: Codable {
     let id: Int?
     let addressableType: String?
     let addressableID: Int?
-    let streetAddress, city, state, zipCode: String?
-    let createdAt, updatedAt, formatted: String?
+    var streetAddress, city, state, zipCode: String?
+    var createdAt, updatedAt, formatted: String?
 
     enum CodingKeys: String, CodingKey {
         case id

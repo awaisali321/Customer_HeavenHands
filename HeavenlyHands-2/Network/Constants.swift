@@ -41,10 +41,10 @@ struct AppConstants {
         static var baseURL: URL {
             switch AppConstants.API.environment{
                 case .live:
-                    return URL(string: "https://dev-api-ch.10bytestech.com/api/patient")!
+                    return URL(string: "https://dev-api-ch.10bytestech.com/api/patient/")!
                     
                 case .staging:
-                    return URL(string: "https://dev-api-ch.10bytestech.com/api/patient")!
+                    return URL(string: "https://dev-api-ch.10bytestech.com/api/patient/")!
                 
             }
         }

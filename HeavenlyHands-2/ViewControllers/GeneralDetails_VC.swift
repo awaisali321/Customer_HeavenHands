@@ -21,10 +21,18 @@ class GeneralDetails_VC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        self.detailDataArray.append(ProfileArray?.cnic ?? "")
+        self.detailDataArray.append(ProfileArray?.gender ?? "")
+        self.detailDataArray.append(ProfileArray?.homeNumber ?? "")
+        self.detailDataArray.append(ProfileArray?.ssn ?? "")
+        self.detailArray = ["CIN","Gender","Height","Weight"]
+        self.nameLbl.text = "\(ProfileArray?.name ?? "")"
+        self.ProfileImg.pLoadImage(url: appdelegate.imagebaseurl + (AppDefault.currentUser?.file ?? ""))
+        self.GeneralDetailsTbl.reloadData()
+        
 //        detailDataArray = ["4156356325632563","Male","10’6”","65.52"]
         // Do any additional setup after loading the view.
-        self.ProfileApi("\(AppDefault.currentUser?.firstName ?? "")", "\(AppDefault.currentUser?.lastName ?? "")", "\(AppDefault.currentUser?.dateOfBirth ?? "")", "\(AppDefault.currentUser?.gender ?? "")", "\(AppDefault.currentUser?.email ?? "")", "\(AppDefault.currentUser?.cnic ?? "")", "\(AppDefault.currentUser?.ssn ?? "")", "\(AppDefault.currentUser?.mobileNumber ?? "")", "\(AppDefault.currentUser?.homeNumber ?? "")", "Street_adress", "City","state", "zip_Code")
+      
     
         
     }
@@ -53,11 +61,9 @@ class GeneralDetails_VC: UIViewController {
                 
                 
                 
-                self.detailArray = ["CIN","Gender","Height","Weight"]
                 
-                self.nameLbl.text = "\(response.name ?? "")"
-                self.ProfileImg.pLoadImage(url: appdelegate.imagebaseurl + (AppDefault.currentUser?.file ?? ""))
-                self.GeneralDetailsTbl.reloadData()
+                
+               
 
             case .failure(let error):
                 if(error == "Response status code was unacceptable: 500."){
@@ -144,7 +150,7 @@ extension GeneralDetails_VC:UITableViewDelegate,UITableViewDataSource{
 //      }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 70
         
     }
     

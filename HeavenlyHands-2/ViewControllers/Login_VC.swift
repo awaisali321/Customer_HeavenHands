@@ -14,9 +14,17 @@ class Login_VC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        UserNameFld.text = "ios@mail.com"
-//        PasswordFld.text = "12345678"
-        // Do any additional setup after loading the view.
+        if (UserDefaults.standard.object(forKey: "isremeber") as? Bool ?? false){
+            self.rememberMe_button.isSelected = true
+            self.UserNameFld.text = UserDefaults.standard.object(forKey: "username") as? String ?? ""
+            self.PasswordFld.text = UserDefaults.standard.object(forKey: "passwordvsl") as? String ?? ""
+            
+         
+        }else {
+          
+        
+        }
+        
     }
     var modelLogin: Userdata? {
         didSet {
@@ -40,7 +48,7 @@ class Login_VC: UIViewController {
             if PasswordFld.text != "" {
                 UserDefaults.standard.set(true, forKey: "islogin")
                 UserDefaults.standard.set(UserNameFld.text, forKey: "username")
-                UserDefaults.standard.set(PasswordFld.text, forKey: "password")
+                UserDefaults.standard.set(PasswordFld.text, forKey: "passwordvsl")
                 funLogin(UserNameFld.text!, PasswordFld.text!)
             }
         }else if(UserNameFld.text == "" || PasswordFld.text == ""){
@@ -68,13 +76,25 @@ class Login_VC: UIViewController {
         APIServices.loginApi(email: email, password: password) {(result) in
             switch result{
             case .success(let response):
+                self.notificationapi()
+
+            case .failure(let error):
+                print(error)
+                self.view.makeToast("Given Credentials Is Not Valid")
+                
+            }
+        }
+    }
+    private  func notificationapi() {
+        APIServices.notificationapi() {(result) in
+            switch result{
+            case .success(let response):
                 
                 appdelegate.GotoDashBoard()
                
 
             case .failure(let error):
-                print(error)
-                self.view.makeToast("Given Credentials Is Not Valid")
+                appdelegate.GotoDashBoard()
                 
             }
         }

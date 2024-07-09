@@ -35,11 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 IQKeyboardManager.shared.shouldPlayInputClicks = true
                 IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
                 IQKeyboardManager.shared.enableDebugging = true
-                IQKeyboardManager.shared.enableAutoToolbar = false
-        if UserDefaults.standard.object(forKey: "islogin") as? Bool ?? false == false{
-            self.gotoSignInVc()
-        }else {
+        if (UserDefaults.standard.object(forKey: "islogin") as? Bool ?? false){
             self.GotoDashBoard()
+        }else {
+          
+            self.gotoSignInVc()
         }
         
         

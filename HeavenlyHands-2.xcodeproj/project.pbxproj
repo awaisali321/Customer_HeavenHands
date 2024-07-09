@@ -11,6 +11,8 @@
 		181877042C3C794F00E91C46 /* SwiftySignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181877022C3C794F00E91C46 /* SwiftySignature.swift */; };
 		181877052C3C794F00E91C46 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181877032C3C794F00E91C46 /* YPDrawSignatureView.swift */; };
 		18E25A182C3D42D700037D6A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18E25A172C3D42D600037D6A /* GoogleService-Info.plist */; };
+		18E25A1C2C3D51C600037D6A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E25A192C3D51C600037D6A /* NotificationCell.swift */; };
+		18E25A1D2C3D51C600037D6A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E25A1A2C3D51C600037D6A /* NotificationCell.xib */; };
 		6580B0AFC31D443EAB812B20 /* Pods_HeavenlyHands_2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7759C7FE6C4C96D6C584E974 /* Pods_HeavenlyHands_2Tests.framework */; };
 		82446BB43EC0AB03B1EFACF9 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D609618549163C8B8960B0 /* Pods_HeavenlyHands_2_HeavenlyHands_2UITests.framework */; };
 		ADEA79C941EE3B8E278175EB /* Pods_HeavenlyHands_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7EE130B4E417E8F827C712 /* Pods_HeavenlyHands_2.framework */; };
@@ -121,6 +123,8 @@
 		181877032C3C794F00E91C46 /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
 		18E25A162C3D429500037D6A /* HeavenlyHands-2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HeavenlyHands-2.entitlements"; sourceTree = "<group>"; };
 		18E25A172C3D42D600037D6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18E25A192C3D51C600037D6A /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		18E25A1A2C3D51C600037D6A /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		1C75E16029EFE13CFC446A58 /* Pods-HeavenlyHands-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2.debug.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2/Pods-HeavenlyHands-2.debug.xcconfig"; sourceTree = "<group>"; };
 		26EBF77CB645E5F868473667 /* Pods-HeavenlyHands-2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2.release.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2/Pods-HeavenlyHands-2.release.xcconfig"; sourceTree = "<group>"; };
 		4A9B2A3403DB5DD8BF66FF4F /* Pods-HeavenlyHands-2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenlyHands-2Tests.release.xcconfig"; path = "Target Support Files/Pods-HeavenlyHands-2Tests/Pods-HeavenlyHands-2Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +261,15 @@
 				4A9B2A3403DB5DD8BF66FF4F /* Pods-HeavenlyHands-2Tests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		18E25A1B2C3D51C600037D6A /* NotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				18E25A192C3D51C600037D6A /* NotificationCell.swift */,
+				18E25A1A2C3D51C600037D6A /* NotificationCell.xib */,
+			);
+			path = NotificationCell;
 			sourceTree = "<group>";
 		};
 		C17835722B56C2DB0071C3AF /* Helpers */ = {
@@ -453,6 +466,7 @@
 		C18C8A7F2B4EC0C2006D72D6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				18E25A1B2C3D51C600037D6A /* NotificationCell */,
 				181877022C3C794F00E91C46 /* SwiftySignature.swift */,
 				181877032C3C794F00E91C46 /* YPDrawSignatureView.swift */,
 				181877002C3C782D00E91C46 /* signatureVC.swift */,
@@ -621,6 +635,7 @@
 				C17835B22B56C2DB0071C3AF /* ag-streamer-sdk.config in Resources */,
 				C17835BF2B56C2DB0071C3AF /* Roboto-Regular.ttf in Resources */,
 				C17835C22B56C2DB0071C3AF /* Poppins-Bold.ttf in Resources */,
+				18E25A1D2C3D51C600037D6A /* NotificationCell.xib in Resources */,
 				C18C8A5C2B4EC05B006D72D6 /* LaunchScreen.storyboard in Resources */,
 				C17835C02B56C2DB0071C3AF /* OFL.txt in Resources */,
 				C17835C12B56C2DB0071C3AF /* Poppins-Regular.ttf in Resources */,
@@ -802,6 +817,7 @@
 				181877042C3C794F00E91C46 /* SwiftySignature.swift in Sources */,
 				C18A97DA2B56BB6C00AF0E8E /* Services.swift in Sources */,
 				C18A97DE2B56BB6C00AF0E8E /* NetworkManager.swift in Sources */,
+				18E25A1C2C3D51C600037D6A /* NotificationCell.swift in Sources */,
 				C18C8A8D2B4EE2F3006D72D6 /* MenuVC_Cell.swift in Sources */,
 				C18A97DC2B56BB6C00AF0E8E /* Extension+Error.swift in Sources */,
 				C18C8A972B4F1C00006D72D6 /* TasksVC_Cell.swift in Sources */,

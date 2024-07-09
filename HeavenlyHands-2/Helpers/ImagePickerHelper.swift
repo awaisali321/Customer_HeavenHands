@@ -22,11 +22,11 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate,UIDocumentPi
     override init(){
         super.init()
 
-        let cameraAction = UIAlertAction(title: "Take Picture", style: .default){
+        let cameraAction = UIAlertAction(title: "Camera", style: .default){
             UIAlertAction in
             self.openCamera()
         }
-        let galleryAction = UIAlertAction(title: "Add New Photo", style: .default){
+        let galleryAction = UIAlertAction(title: "Gallery", style: .default){
             UIAlertAction in
             self.openGallery()
         }
