@@ -13,6 +13,7 @@ class Notifications_VC: UIViewController {
     var notificationArray: [notificationmodel]? {didSet {}}
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("notificationpopup"), object: nil)
         NotificationTbl.register(UINib(nibName: "NotificationCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")
         NotificationTbl.delegate = self
         NotificationTbl.dataSource = self
@@ -28,6 +29,10 @@ class Notifications_VC: UIViewController {
         self.NotificationTbl.reloadData()
         
         // Do any additional setup after loading the view.
+    }
+    @objc func methodOfReceivedNotification(notification: Notification) {
+        notificationArray = notificationmodel.readUserFromArchive()
+        self.NotificationTbl.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
         NotificationTbl.dataSource = self
@@ -46,7 +51,31 @@ class Notifications_VC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func setdate(setdate:String,format:String)->String{
+        
+        
+        
+        
+  
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+       
+        
+//
+//        let formatter = DateFormatter()
+//
+//        formatter.dateFormat = "yyyy-MM-ddTHH:mm:ss.SSS ZZZZ"
+        let result = formatter.date(from: setdate) ?? Date()
+        
+        let formatter2 = DateFormatter()
+        formatter2.dateFormat = format
+        let result3 = formatter2.string(from: result)
+        
 
+        return result3
+        
+    }
 }
 extension Notifications_VC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,7 +87,7 @@ extension Notifications_VC:UITableViewDelegate,UITableViewDataSource{
         let data = notificationArray?[indexPath.row]
         cell.titlelbl.text = data?.title
         cell.body.text = data?.body
-        cell.datelbl.text = data?.dates
+        cell.datelbl.text = self.setdate(setdate: data?.dates ?? "", format: "dd-MM-yyyy")
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
      

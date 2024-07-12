@@ -46,6 +46,17 @@
             self.performSegue(withIdentifier: "MenuHomeVC", sender: nil)
             self.performSegue(withIdentifier: "SideMenu", sender: nil)
             // Do any additional setup after loading the view.
+            NotificationCenter.default.addObserver(self, selector: #selector(notificationfunc), name: NSNotification.Name(rawValue: "notificationpopup"), object: nil)
+            // Do any additional setup after loading the view.
+        }
+        
+        @objc func notificationfunc(notification: NSNotification) {
+            self.navigationController?.popViewController(animated: false)
+            let alert = UIAlertController(title: "Notification", message: UserDefaults.standard.object(forKey: "appointtime") as? String ?? "", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+          
         }
         
 

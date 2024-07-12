@@ -23,9 +23,9 @@ class GeneralDetails_VC: UIViewController {
         super.viewDidLoad()
         self.detailDataArray.append(AppDefault.currentUser?.cnic ?? "")
         self.detailDataArray.append(AppDefault.currentUser?.gender ?? "")
-        self.detailDataArray.append(AppDefault.currentUser?.homeNumber ?? "")
-        self.detailDataArray.append(AppDefault.currentUser?.ssn ?? "")
-        self.detailArray = ["CIN","Gender","Height","Weight"]
+//        self.detailDataArray.append(AppDefault.currentUser?.homeNumber ?? "")
+//        self.detailDataArray.append(AppDefault.currentUser?.ssn ?? "")
+        self.detailArray = ["CIN","Gender"]
      
         self.nameLbl.text = (AppDefault.currentUser?.firstName ?? "") + " " + (AppDefault.currentUser?.lastName ?? "")
         self.ProfileImg.pLoadImage(url: appdelegate.imagebaseurl + (AppDefault.currentUser?.file ?? ""))

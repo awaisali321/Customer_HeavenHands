@@ -266,6 +266,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         if notificationmodel.saveUserToArchive(notificationmodels: self.notificationArray ?? []){
             
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationpopup"), object: nil)
        
 //        completionHandler([UNNotificationPresentationOptions.sound , UNNotificationPresentationOptions.alert , UNNotificationPresentationOptions.badge])
 //

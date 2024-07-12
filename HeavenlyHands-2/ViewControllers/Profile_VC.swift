@@ -18,7 +18,7 @@ class Profile_VC: UIViewController {
     
     @IBOutlet weak var emaillbl: UITextField!
     @IBOutlet weak var phonelbl: UITextField!
-    @IBOutlet weak var addresslbl: UITextField!
+    @IBOutlet weak var addresslbl: UITextView!
     @IBOutlet weak var citylbl: UITextField!
     @IBOutlet weak var statelbl: UITextField!
     @IBOutlet weak var dateofbirth: UITextField!

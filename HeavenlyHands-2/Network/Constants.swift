@@ -37,11 +37,11 @@ struct AppConstants {
     static let gcmMessageIDKey = ""
     static let PRODUCT_ID: Int = 2
     struct API{
-        static let environment: NetworkEnvironment = .staging
+        static let environment: NetworkEnvironment = .live
         static var baseURL: URL {
             switch AppConstants.API.environment{
                 case .live:
-                    return URL(string: "https://dev-api-ch.10bytestech.com/api/patient/")!
+                    return URL(string: "https://api-ch.10bytestech.com/api/patient/")!
                     
                 case .staging:
                     return URL(string: "https://dev-api-ch.10bytestech.com/api/patient/")!
@@ -51,7 +51,7 @@ struct AppConstants {
         static var imageurl: URL {
             switch AppConstants.API.environment{
             case .live:
-                return URL(string: "https://dev-api-ch.10bytestech.com/storage/")!
+                return URL(string: "https://api-ch.10bytestech.com/storage/")!
 
             case .staging:
                 return URL(string: "https://dev-api-ch.10bytestech.com/storage/")!

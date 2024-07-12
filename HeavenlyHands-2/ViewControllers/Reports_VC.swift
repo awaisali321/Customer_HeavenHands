@@ -36,12 +36,13 @@ class Reports_VC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        self.ReportsApi()
+      
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         ReportsTbl.dataSource = self
         ReportsTbl.delegate = self
+        self.ReportsApi()
     }
     
     
@@ -74,6 +75,7 @@ class Reports_VC: UIViewController {
 
             destination.PathLbl = data?.html ?? ""
             destination.iscome = "report"
+            destination.datamdl = data
             navigationController?.pushViewController(destination, animated: true)
             dismiss(animated: true, completion: nil)
             
@@ -161,15 +163,19 @@ extension Reports_VC:UITableViewDelegate,UITableViewDataSource{
         cell.PdfDownloadBtn.addTarget(self, action: #selector(PdfDownloadBtn(sender:)), for: .touchUpInside)
         cell.ViewFileBtn.tag = indexPath.row
         cell.ViewFileBtn.addTarget(self, action: #selector(ReportsViewBtn(sender:)), for: .touchUpInside)
-        cell.DateLbl.text = data?.createdAt?.pToDate()?.getFormattedDate(format: "dd-MM-yyyy")
-        cell.TimeLbl.text = data?.createdAt?.pToDate()?.currentTimeStamp
+//        cell.DateLbl.text = data?.createdAt?.pToDate()?.getFormattedDate(format: "dd-MM-yyyy")
+//        cell.TimeLbl.text = data?.createdAt?.pToDate()?.currentTimeStamp
+        cell.DateLbl.text = self.setdate(setdate: data?.createdAt ?? "", format: "dd-MM-yyyy")
+     
+        cell.TimeLbl.text = self.setdate(setdate: data?.createdAt ?? "", format: "hh:mm a")
         
-        
-        if(data?.patient_signature != nil){
-            cell.eyeview.isHidden = false
+        cell.eyeview.isHidden = false
+      
+        if(data?.patient_signature != nil || data?.type == "INDIVIDUAL SERVICE REPORT (ISR)"){
+           
             cell.signatureview.isHidden = true
         }else{
-            cell.eyeview.isHidden = true
+           
             cell.signatureview.isHidden = false
         }
         
@@ -178,6 +184,31 @@ extension Reports_VC:UITableViewDelegate,UITableViewDataSource{
     
         return cell
     }
+    func setdate(setdate:String,format:String)->String{
+        
+        
+        
+        
+  
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+       
+        
+//
+//        let formatter = DateFormatter()
+//
+//        formatter.dateFormat = "yyyy-MM-ddTHH:mm:ss.SSS ZZZZ"
+        let result = formatter.date(from: setdate) ?? Date()
+        
+        let formatter2 = DateFormatter()
+        formatter2.dateFormat = format
+        let result3 = formatter2.string(from: result)
+        
+
+        return result3
+        
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let data = ReportsmodelArray?.data?[indexPath.row]
@@ -185,6 +216,23 @@ extension Reports_VC:UITableViewDelegate,UITableViewDataSource{
             return 60
         }else{
             return 0
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = ReportsmodelArray?.data?[indexPath.row]
+        if (data?.html?.isEmpty == false){
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let destination = storyboard.instantiateViewController(withIdentifier: "ReportsView_VC") as! ReportsView_VC
+        
+            destination.PathLbl = data?.html ?? ""
+            destination.iscome = "report"
+            destination.datamdl = data
+            navigationController?.pushViewController(destination, animated: true)
+            dismiss(animated: true, completion: nil)
+            
+        }else{
+            self.view.makeToast("Reports Are Not Ready Yet")
+            
         }
     }
     func loadImageFromDiskWith(fileName: String) -> UIImage? {

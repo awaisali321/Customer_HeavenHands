@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="integrated-logo " translatesAutoresizingMaskIntoConstraints="NO" id="Bhg-kA-UIU">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="integrated-logo " translatesAutoresizingMaskIntoConstraints="NO" id="Bhg-kA-UIU" userLabel="integrated-logo">
                                 <rect key="frame" x="37.5" y="193.5" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="Nuk-3y-WYz"/>
@@ -26,7 +26,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="1cacc1"/>
                         <constraints>
                             <constraint firstItem="Bhg-kA-UIU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ACx-K8-xGo"/>
                             <constraint firstItem="Bhg-kA-UIU" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="rrX-lB-s7G"/>
@@ -39,9 +39,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="integrated-logo " width="500" height="500"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="integrated-logo " width="1024" height="1024"/>
+        <namedColor name="1cacc1">
+            <color red="0.21568627450980393" green="0.78823529411764703" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
