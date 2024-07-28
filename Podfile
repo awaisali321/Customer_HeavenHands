@@ -16,7 +16,7 @@ target 'HeavenlyHands-2' do
     # Pods for testing
   end
 pod 'SideMenuController'
-pod 'WKWebViewController'
+
 pod 'Alamofire'
 
 pod 'Kingfisher', '~> 7.0'

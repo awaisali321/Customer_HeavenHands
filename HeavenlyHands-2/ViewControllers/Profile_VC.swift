@@ -23,6 +23,7 @@ class Profile_VC: UIViewController {
     @IBOutlet weak var statelbl: UITextField!
     @IBOutlet weak var dateofbirth: UITextField!
     @IBOutlet weak var generalbl: UITextField!
+    @IBOutlet weak var postalcodetxt: UITextField!
     var isEditingProfile = false
     var isimage = false
     
@@ -52,18 +53,39 @@ class Profile_VC: UIViewController {
         self.citylbl.isUserInteractionEnabled = false
         self.statelbl.isUserInteractionEnabled = false
         self.dateofbirth.isUserInteractionEnabled = false
-        
+        self.postalcodetxt.isUserInteractionEnabled = false
         self.emaillbl.text = AppDefault.currentUser?.email
-        self.phonelbl.text = AppDefault.currentUser?.mobileNumber
-        self.addresslbl.text = AppDefault.currentUser?.address?.formatted
+        self.phonelbl.text =  self.format(with: "+X (XXX) XXX-XXXX", phone: AppDefault.currentUser?.mobileNumber ?? "")
+        self.addresslbl.text = AppDefault.currentUser?.address?.streetAddress
         self.citylbl.text = AppDefault.currentUser?.address?.city
         self.statelbl.text = AppDefault.currentUser?.address?.state
         self.dateofbirth.text = AppDefault.currentUser?.dateOfBirth
+        self.postalcodetxt.text = AppDefault.currentUser?.address?.zipCode
         self.generalbl.text = "General Details"
     
     }
     override func viewWillAppear(_ animated: Bool) {
      
+    }
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex // numbers iterator
+
+        // iterate over the mask characters until the iterator of numbers ends
+        for ch in mask where index < numbers.endIndex {
+            if ch == "X" {
+                // mask requires a number in this place, so take the next one
+                result.append(numbers[index])
+
+                // move numbers iterator to the next index
+                index = numbers.index(after: index)
+
+            } else {
+                result.append(ch) // just append a mask character
+            }
+        }
+        return result
     }
     private  func ProfileApi(_ first_name:String,_ last_name:String,_ date_of_birth:String,_ gender:String,_ email:String,_ cnic:String,_ ssn:String,_ mobile_number:String,_ home_number:String,_ street_address:String,_ city:String,_ state:String,_ zip_code:String,_ img:Data) {
        
@@ -73,9 +95,10 @@ class Profile_VC: UIViewController {
                 self.ProfileArray = response
               AppDefault.currentUser?.email =  self.emaillbl.text
                AppDefault.currentUser?.mobileNumber = self.phonelbl.text
-               AppDefault.currentUser?.address?.formatted  =  self.addresslbl.text
+                AppDefault.currentUser?.address?.streetAddress  =  self.addresslbl.text
                 AppDefault.currentUser?.address?.city = self.citylbl.text
                  AppDefault.currentUser?.address?.state  = self.statelbl.text
+                AppDefault.currentUser?.address?.zipCode  = self.postalcodetxt.text
                 AppDefault.currentUser?.dateOfBirth  = self.dateofbirth.text
                 AppDefault.currentUser?.file  = response.file
                 self.ProfileImg.pLoadImage(url: appdelegate.imagebaseurl + (AppDefault.currentUser?.file ?? ""))
@@ -146,6 +169,7 @@ class Profile_VC: UIViewController {
             self.citylbl.isUserInteractionEnabled = false
             self.statelbl.isUserInteractionEnabled = false
             self.dateofbirth.isUserInteractionEnabled = false
+            self.postalcodetxt.isUserInteractionEnabled = false
             isEditingProfile = false
         } else {
             // Handle Edit action
@@ -158,6 +182,7 @@ class Profile_VC: UIViewController {
             self.citylbl.isUserInteractionEnabled = true
             self.statelbl.isUserInteractionEnabled = true
             self.dateofbirth.isUserInteractionEnabled = true
+            self.postalcodetxt.isUserInteractionEnabled = true
         
             EditProfileBtn.setTitle("Save", for: .normal)
             
@@ -169,7 +194,16 @@ class Profile_VC: UIViewController {
            
         }
     }
+   
  
 }
 
 
+extension Profile_VC: UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        let newString = (text as NSString).replacingCharacters(in: range, with: string)
+        textField.text = format(with: "+X (XXX) XXX-XXXX", phone: newString)
+        return false
+    }
+}

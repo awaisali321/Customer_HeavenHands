@@ -39,7 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="integrated-logo " width="1024" height="1024"/>
+        <image name="integrated-logo " width="167" height="167"/>
         <namedColor name="1cacc1">
             <color red="0.21568627450980393" green="0.78823529411764703" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -19,6 +19,7 @@ class Reports_VC: UIViewController {
     var DocumentsNamesArray = [String]()
     var DatesArray = [String]()
     var TimeArray = [String]()
+
     var ReportsmodelArray:ReportsModel? {
         didSet{
             if(ReportsmodelArray?.data?.count ?? 0 > 0){
@@ -35,7 +36,7 @@ class Reports_VC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("notificationpopup"), object: nil)
       
         // Do any additional setup after loading the view.
     }
@@ -44,7 +45,9 @@ class Reports_VC: UIViewController {
         ReportsTbl.delegate = self
         self.ReportsApi()
     }
-    
+    @objc func methodOfReceivedNotification(notification: Notification) {
+        self.ReportsApi()
+    }
     
     @IBAction func btn_open_menu(_ Sender:Any){
         self.sideMenuController?.toggle()
