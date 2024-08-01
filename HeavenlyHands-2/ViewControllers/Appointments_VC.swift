@@ -105,11 +105,35 @@ extension Appointments_VC:UITableViewDelegate,UITableViewDataSource{
         let data = AppointmentsmodelArray?.data?[indexPath.row]
         cell.appointmentNameLbl.text = data?.title
         cell.TimeLbl.text = data?.startDate?.pToDate()?.currentTimeStamp
-        cell.datesLbl.text = data?.startDate?.pToDate()?.getFormattedDate(format: "dd-MM-yyyy")
-        
-
+       
+        cell.datesLbl.text = self.setdate(setdate: data?.startDate ?? "", format: "dd-MM-yyyy")
         
         return cell
+    }
+    func setdate(setdate:String,format:String)->String{
+        
+        
+        
+        
+  
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+       
+        
+//
+//        let formatter = DateFormatter()
+//
+//        formatter.dateFormat = "yyyy-MM-ddTHH:mm:ss.SSS ZZZZ"
+        let result = formatter.date(from: setdate) ?? Date()
+        
+        let formatter2 = DateFormatter()
+        formatter2.dateFormat = format
+        let result3 = formatter2.string(from: result)
+        
+
+        return result3
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

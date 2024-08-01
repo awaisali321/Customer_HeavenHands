@@ -1020,7 +1020,7 @@
 				DEVELOPMENT_TEAM = WCMW28F998;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HeavenlyHands-2/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "SC Patient";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sc Care Mate";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SC Patient needs permission to use the camera to update profile pictures.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "SSC Patient needs permission to use the camera to update profile pictures.";
@@ -1036,7 +1036,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.integrated.homecarePatient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.integrated.homecare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1060,7 +1060,7 @@
 				DEVELOPMENT_TEAM = WCMW28F998;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HeavenlyHands-2/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "SC Patient";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sc Care Mate";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SC Patient needs permission to use the camera to update profile pictures.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "SSC Patient needs permission to use the camera to update profile pictures.";
@@ -1076,7 +1076,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.integrated.homecarePatient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.integrated.homecare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
