@@ -25,6 +25,17 @@ class Login_VC: UIViewController {
         
         }
         
+        UserNameFld.attributedPlaceholder = NSAttributedString(
+            string: "Enter Username",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
+        )
+        PasswordFld.attributedPlaceholder = NSAttributedString(
+            string: "Enter Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
+        )
+        
+        
+        
     }
     var modelLogin: Userdata? {
         didSet {
@@ -55,6 +66,9 @@ class Login_VC: UIViewController {
                 UserDefaults.standard.set(UserNameFld.text, forKey: "username")
                 UserDefaults.standard.set(PasswordFld.text, forKey: "passwordvsl")
                 funLogin(UserNameFld.text!, PasswordFld.text!)
+            }
+            else{
+                self.view.makeToast("Please Enter Your Password")
             }
         }else if(UserNameFld.text == "" || PasswordFld.text == ""){
             self.view.makeToast("Please Enter Your Credentials")
